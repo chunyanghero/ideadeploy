@@ -1,0 +1,10 @@
+.*
+*~
+*.swp
+*.bat
+target
+pom.xml
+spring-datasource.xml
+filter-*.properties
+hopdeploy-web/hopdeploy
+hopdeploy-biz/src/main/java/com/haier/openplatform/showcase/util/DBUtil.java
