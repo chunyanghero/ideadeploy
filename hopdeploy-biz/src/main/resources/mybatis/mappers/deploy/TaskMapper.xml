@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.TaskDAO">
+ 
+	<resultMap id="taskResultMap" type="task">
+        <!-- <id column="id" property="id" javaType="long" jdbcType="NUMERIC" /> -->
+        <result property="taskId" column="task_id" />
+        <result property="publishId" column="publish_id" />
+        <result property="packageName" column="package_name" />
+        <result property="applicationCode" column="application_code" />
+        <result property="deployDate" column="deploy_date" />
+        <result property="deployType" column="deploy_type" />
+        <result property="isUrgent" column="is_urgent" />
+        <result property="isSuccessful" column="is_successful" />
+        <result property="deployMessage" column="deploy_message" />
+        <result property="executionTime" column="execution_time" />
+	</resultMap>
+	
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize} * #{pager.currentPage} ) where rownum_ >= #{pager.firstResult} + 1]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	
+	<insert id="insertManualTask" parameterType="task">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			SELECT seq_task_id.NEXTVAL AS id FROM DUAL
+		</selectKey>	
+		<![CDATA[
+		  INSERT INTO 
+		       TASK task_
+		  (
+		       task_.TASK_ID,
+	    	   task_.PUBLISH_ID,
+	    	   task_.PACKAGE_NAME,
+	    	   task_.DEPLOY_DATE,
+	    	   task_.DEPLOY_MESSAGE,
+	    	   task_.DEPLOY_TYPE,
+	    	   task_.MIDDLEWARE_TYPE
+		  )
+		   Values
+		  (
+		       #{id},
+		       #{publishId},
+		       #{packageName},
+		       to_date(#{deployDate},'yyyy-mm-dd hh24:mi:ss'),
+		       #{deployMessage},
+		       #{deployType},
+		       #{middlewareType}
+		   )
+	    ]]>
+	</insert>
+	
+	<sql id="selectPartialColumns">
+	<![CDATA[
+		select
+			task_.TASK_ID,
+       		task_.PACKAGE_NAME,
+		    to_char(task_.DEPLOY_DATE, 'yyyy-mm-dd hh24:mi') as DEPLOY_DATE,
+		    task_.MIDDLEWARE_TYPE,
+		    task_.DEPLOY_TYPE
+		from
+		    TASK task_
+		where 
+		    1 = 1
+	]]>
+	</sql>
+	
+	<sql id="searchManualDeployResult_fragement">
+	    <if test="task.packageName != null and task.packageName != ''">
+		    and task_.PACKAGE_NAME like '%' || trim(#{task.packageName}) || '%'
+	    </if>
+	    <if test="task.middlewareType != null">
+		    and task_.MIDDLEWARE_TYPE = #{task.middlewareType}
+	    </if>
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[and task_.DEPLOY_DATE >= to_date(trim(#{startTime}), 'yyyy-mm-dd')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[and task_.DEPLOY_DATE < to_date(#{endTime}, 'yyyy-mm-dd')]]>
+		</if>
+	</sql>
+	
+	<sql id="searchManualDeployResult_order_fragement">
+		order by
+		    task_.DEPLOY_DATE desc
+	</sql>
+	
+	<select id="searchManualDeployResult" parameterType="task" resultMap="taskResultMap">
+		<include refid="pagination_Head" />
+		<include refid="selectPartialColumns" />
+		<include refid="searchManualDeployResult_fragement" />
+		<include refid="searchManualDeployResult_order_fragement" />
+		<include refid="pagination_Tail" />
+	</select>
+	
+	<select id="searchManualDeployResultCount" parameterType="task" 
+		resultType="long">
+		<include refid="count_Start_Head" />
+		<include refid="selectPartialColumns" />
+		<include refid="searchManualDeployResult_fragement" />
+		<include refid="count_Start_Tail" />
+	</select>
+	
+	<select id="searchManualDeployResultByTaskId" resultType="string">
+		select
+			task_.DEPLOY_MESSAGE
+		from
+			TASK task_
+		where
+			task_.TASK_ID = #{id}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		delete from TASK where task_id = #{id}
+		]]>
+	</delete>
+</mapper>

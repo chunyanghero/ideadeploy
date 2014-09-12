@@ -1,0 +1,481 @@
+2014-09-04 13:35:44,168 ERROR org.hornetq.core.client.createConnection:553 - HQ214045: Failed to create netty connection
+java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:351)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:213)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+	at java.net.Socket.connect(Socket.java:529)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.connect(OioClientSocketPipelineSink.java:105)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.eventSunk(OioClientSocketPipelineSink.java:65)
+	at org.jboss.netty.channel.Channels.connect(Channels.java:634)
+	at org.jboss.netty.channel.AbstractChannel.connect(AbstractChannel.java:207)
+	at org.jboss.netty.bootstrap.ClientBootstrap.connect(ClientBootstrap.java:229)
+	at org.jboss.netty.bootstrap.ClientBootstrap.connect(ClientBootstrap.java:182)
+	at org.hornetq.core.remoting.impl.netty.NettyConnector.createConnection(NettyConnector.java:505)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.getConnection(ClientSessionFactoryImpl.java:1225)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.getConnectionWithRetry(ClientSessionFactoryImpl.java:1071)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.connect(ClientSessionFactoryImpl.java:246)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:826)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnectionInternal(HornetQConnectionFactory.java:583)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:107)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:102)
+	at org.springframework.jms.connection.SingleConnectionFactory.doCreateConnection(SingleConnectionFactory.java:342)
+	at org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:288)
+	at org.springframework.jms.connection.SingleConnectionFactory.createConnection(SingleConnectionFactory.java:225)
+	at org.springframework.jms.support.JmsAccessor.createConnection(JmsAccessor.java:184)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:456)
+	at org.springframework.jms.core.JmsTemplate.send(JmsTemplate.java:543)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:620)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:607)
+	at com.haier.openplatform.hmc.sender.SendMsgService.sendMsg(SendMsgService.java:24)
+	at com.haier.openplatform.console.audit.HOPServiceAuditHandler.afterThrowing(HOPServiceAuditHandler.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:603)
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:42)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl$$EnhancerByCGLIB$$285d40f0.createDeploySchedule(<generated>)
+	at com.haier.openplatform.hopdeploy.quartz.DeployScheduleServiceImplTest_createDSFromAlm.testCreateDSFromALM(DeployScheduleServiceImplTest_createDSFromAlm.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+2014-09-04 14:51:30,936 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 14:51:30,938 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 173, packageName = alm.2014090501.war
+2014-09-04 14:51:30,938 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 14:51:31,518 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - ========================= TaskServiceImpl.deployTask =======================
+2014-09-04 14:51:31,519 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:103 - 10.135.12.174
+2014-09-04 14:51:31,519 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - haieradmin
+2014-09-04 14:51:31,520 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:105 - Haier,alm123
+2014-09-04 14:51:31,520 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:106 - 10.135.12.174
+2014-09-04 14:51:31,520 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:107 - webftp
+2014-09-04 14:51:31,521 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:108 - webftp
+2014-09-04 14:51:31,521 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:109 - alm.2014090501.war
+2014-09-04 14:51:31,522 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:111 - ========================= TaskServiceImpl.deployTask =======================
+2014-09-04 14:51:31,605 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:187 - ================== weblogic command ====================
+2014-09-04 14:51:31,605 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:188 - ./autodeploy_v_1.sh  weblogic welcome2 webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.2014090501.war 1
+2014-09-04 14:51:31,606 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:189 - ================== weblogic command ====================
+2014-09-04 15:30:09,482 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 15:30:09,487 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 175, packageName = alm.2014090501.war
+2014-09-04 15:30:09,488 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 15:30:10,090 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - ========================= TaskServiceImpl.deployTask =======================
+2014-09-04 15:30:10,090 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:103 - 10.135.12.174
+2014-09-04 15:30:10,090 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - haieradmin
+2014-09-04 15:30:10,090 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:105 - Haier,alm123
+2014-09-04 15:30:10,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:106 - 10.135.12.174
+2014-09-04 15:30:10,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:107 - webftp
+2014-09-04 15:30:10,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:108 - webftp
+2014-09-04 15:30:10,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:109 - alm.2014090501.war
+2014-09-04 15:30:10,092 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:111 - ========================= TaskServiceImpl.deployTask =======================
+2014-09-04 15:30:10,192 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:187 - ================== weblogic command ====================
+2014-09-04 15:30:10,192 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:188 - ./autodeploy_v_1.sh  weblogic welcome2 webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.2014090501.war 1
+2014-09-04 15:30:10,193 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:189 - ================== weblogic command ====================
+2014-09-04 16:02:05,434 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 16:02:05,437 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:02:05,437 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 16:02:05,437 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=[15866867422, 18354231940, 18765901113], status=0, deployMessage=null, publishId=6244]
+2014-09-04 16:02:05,438 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 16:02:05,438 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:02:05,438 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 16:16:03,920 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 16:16:04,948 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:136 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:16:04,949 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:137 - [DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 16:16:04,949 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:138 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:16:05,076 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:141 - ==========getDeployedPublishIds============
+2014-09-04 16:16:05,076 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - [null, null, 33]
+2014-09-04 16:16:05,076 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - ==========getDeployedPublishIds============
+2014-09-04 16:16:05,769 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 16:16:05,770 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:16:05,770 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 16:16:05,770 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=[15866867422, 18354231940, 18765901113], status=0, deployMessage=null, publishId=6244]
+2014-09-04 16:16:05,771 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 16:16:05,771 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:16:05,772 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 16:16:06,185 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ============== DeployScheduleJob  end  =============
+2014-09-04 16:16:06,185 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - ======== ALM * ALM * ALM * ALM * ALM * ALM =========
+2014-09-04 16:16:06,186 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 16:16:06,186 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:43 - ======== ALM * ALM * ALM * ALM * ALM * ALM =========
+2014-09-04 16:16:06,187 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:16:06,187 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 16:16:06,187 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:16:07,870 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:16:07,870 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 16:16:07,871 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:16:08,889 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:16:08,889 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 16:16:08,889 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:16:09,964 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:45 - =============== DeployScheduleFromAlmJob end ==============
+
+
+
+
+
+
+
+2014-09-04 16:30:02,399 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 16:30:03,552 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:137 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:30:03,553 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:138 - [DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 16:30:03,553 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:139 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:30:03,716 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - ==========getDeployedPublishIds============
+2014-09-04 16:30:03,716 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - [null, null, 33]
+2014-09-04 16:30:03,717 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:144 - ==========getDeployedPublishIds============
+2014-09-04 16:30:04,470 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 16:30:04,470 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:30:04,471 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 16:30:04,471 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=[15866867422, 18354231940, 18765901113], status=0, deployMessage=null, publishId=6244]
+2014-09-04 16:30:04,471 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 16:30:04,472 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:30:04,472 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 16:30:04,777 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 16:30:04,777 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 16:30:04,779 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 16:30:04,779 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:04,780 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 16:30:04,780 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:07,556 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:07,556 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 16:30:07,557 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:08,578 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:08,578 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 16:30:08,579 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:09,609 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:09,609 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 16:30:09,609 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:30:10,811 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+2014-09-04 16:53:05,506 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 16:53:06,596 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:137 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:53:06,597 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:138 - [DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 16:53:06,597 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:139 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:53:06,774 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:145 - ==========getDeployedPublishIds============
+2014-09-04 16:53:06,774 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:146 - [null, null, 33]
+2014-09-04 16:53:06,775 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:147 - ==========getDeployedPublishIds============
+2014-09-04 16:53:07,228 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 16:53:07,228 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:53:07,228 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 16:53:07,229 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=[15866867422, 18354231940, 18765901113], status=0, deployMessage=null, publishId=6244]
+2014-09-04 16:53:07,229 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 16:53:07,229 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:53:07,229 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 16:53:07,631 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 16:53:07,631 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=181, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 16:53:07,633 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 16:53:07,634 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:07,634 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 16:53:07,635 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:10,279 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:10,279 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 16:53:10,280 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:11,346 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:11,346 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 16:53:11,347 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:12,365 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:12,365 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 16:53:12,365 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:13,381 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:13,381 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 181, packageName = vom.2014090401.war
+2014-09-04 16:53:13,381 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:53:14,435 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+2014-09-04 16:58:46,178 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 16:58:47,493 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:58:47,494 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - [DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 16:58:47,494 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:144 - ============searchDeployScheduleFromAlm=============
+2014-09-04 16:58:47,625 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:150 - ==========getDeployedPublishIds============
+2014-09-04 16:58:47,626 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:151 - [null, null, 33]
+2014-09-04 16:58:47,626 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:152 - ==========getDeployedPublishIds============
+2014-09-04 16:58:48,127 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 16:58:48,128 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:58:48,128 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 16:58:48,129 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 16:58, executor=ALM, phoneNums=[15866867422, 18354231940, 18765901113], status=0, deployMessage=null, publishId=6244]
+2014-09-04 16:58:48,129 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 16:58:48,129 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 16:58:48,130 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 16:58:48,580 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 16:58:48,580 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=181, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=182, packageName=vom.2014090401.war, executeTime=2014-09-04 16:58, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 16:58:48,582 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 16:58:48,582 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:48,582 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 16:58:48,583 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:50,345 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:50,345 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 16:58:50,346 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:51,513 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:51,513 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 16:58:51,514 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:52,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:52,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 16:58:52,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:53,650 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:53,650 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 181, packageName = vom.2014090401.war
+2014-09-04 16:58:53,651 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:54,672 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:54,672 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 182, packageName = vom.2014090401.war
+2014-09-04 16:58:54,673 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 16:58:55,732 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+2014-09-04 17:03:38,941 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 17:03:40,003 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:03:40,004 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - [DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 17:03:40,004 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:144 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:03:40,132 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:150 - ==========getDeployedPublishIds============
+2014-09-04 17:03:40,132 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:151 - [null, null, 33]
+2014-09-04 17:03:40,132 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:152 - ==========getDeployedPublishIds============
+2014-09-04 17:03:40,733 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:03:40,734 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:03:40,734 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:03:40,735 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 17:03, executor=ALM, phoneNums=[15866867422, 18354231940, 18765901113], status=0, deployMessage=null, publishId=6244]
+2014-09-04 17:03:40,735 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:03:40,735 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:03:40,736 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:03:41,068 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:03:41,068 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=181, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=182, packageName=vom.2014090401.war, executeTime=2014-09-04 16:58, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=183, packageName=vom.2014090401.war, executeTime=2014-09-04 17:03, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 17:03:41,069 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:03:41,070 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:41,070 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 17:03:41,070 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:42,844 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:42,844 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 17:03:42,845 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:43,870 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:43,870 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 17:03:43,871 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:44,960 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:44,960 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 17:03:44,960 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:46,024 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:46,024 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 181, packageName = vom.2014090401.war
+2014-09-04 17:03:46,025 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:47,308 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:47,308 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 182, packageName = vom.2014090401.war
+2014-09-04 17:03:47,308 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:48,628 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:48,628 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 183, packageName = vom.2014090401.war
+2014-09-04 17:03:48,629 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:03:49,673 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+2014-09-04 17:12:35,292 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 17:12:36,597 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:12:36,598 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:144 - [DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 17:12:36,598 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:145 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:12:36,678 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:148 - ==========getDeployedPublishIds============
+2014-09-04 17:12:36,678 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:149 - [null, null, 33]
+2014-09-04 17:12:36,678 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:150 - ==========getDeployedPublishIds============
+2014-09-04 17:12:37,123 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:12:37,124 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:12:37,124 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:12:37,124 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 17:12, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6244]
+2014-09-04 17:12:37,124 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:12:37,124 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:12:37,125 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:12:37,436 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:12:37,436 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=181, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=182, packageName=vom.2014090401.war, executeTime=2014-09-04 16:58, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=183, packageName=vom.2014090401.war, executeTime=2014-09-04 17:03, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=184, packageName=vom.2014090401.war, executeTime=2014-09-04 17:12, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 17:12:37,437 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:12:37,438 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:37,438 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 17:12:37,438 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:43,379 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:43,379 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 17:12:43,380 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:44,449 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:44,449 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 17:12:44,449 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:45,469 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:45,469 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 17:12:45,469 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:46,556 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:46,556 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 181, packageName = vom.2014090401.war
+2014-09-04 17:12:46,557 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:47,610 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:47,610 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 182, packageName = vom.2014090401.war
+2014-09-04 17:12:47,611 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:48,851 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:48,851 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 183, packageName = vom.2014090401.war
+2014-09-04 17:12:48,851 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:49,884 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:49,884 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 184, packageName = vom.2014090401.war
+2014-09-04 17:12:49,884 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:12:51,285 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+
+
+
+
+
+2014-09-04 17:17:42,320 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 17:17:43,572 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:136 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:17:43,573 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:137 - [DeploySchedule [id=null, packageName=hmms.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6239], DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 17:17:43,573 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:138 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:17:43,647 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:141 - ==========getDeployedPublishIds============
+2014-09-04 17:17:43,648 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - [null, null, 33]
+2014-09-04 17:17:43,648 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - ==========getDeployedPublishIds============
+2014-09-04 17:17:44,160 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:17:44,161 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:17:44,161 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:17:44,162 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:17, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6239]
+2014-09-04 17:17:44,162 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:17:44,162 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:17:44,163 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:17:44,851 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:17:44,851 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:17:44,853 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:17:44,853 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 17:17, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6244]
+2014-09-04 17:17:44,854 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:17:44,854 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:17:44,854 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:17:45,410 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:17:45,410 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=181, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=182, packageName=vom.2014090401.war, executeTime=2014-09-04 16:58, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=183, packageName=vom.2014090401.war, executeTime=2014-09-04 17:03, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=184, packageName=vom.2014090401.war, executeTime=2014-09-04 17:12, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=185, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:17, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=186, packageName=vom.2014090401.war, executeTime=2014-09-04 17:17, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 17:17:45,411 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:17:45,412 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:45,412 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 17:17:45,412 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:48,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:48,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 17:17:48,092 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:49,148 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:49,148 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 17:17:49,149 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:50,178 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:50,178 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 17:17:50,179 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:51,198 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:51,198 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 181, packageName = vom.2014090401.war
+2014-09-04 17:17:51,198 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:52,328 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:52,328 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 182, packageName = vom.2014090401.war
+2014-09-04 17:17:52,328 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:53,356 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:53,356 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 183, packageName = vom.2014090401.war
+2014-09-04 17:17:53,357 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:54,380 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:54,380 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 184, packageName = vom.2014090401.war
+2014-09-04 17:17:54,380 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:55,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:55,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 185, packageName = hmms.2014090401.war
+2014-09-04 17:17:55,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:56,545 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:56,545 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 186, packageName = vom.2014090401.war
+2014-09-04 17:17:56,545 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:17:57,878 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+2014-09-04 17:22:06,257 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 17:22:07,402 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:136 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:22:07,402 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:137 - [DeploySchedule [id=null, packageName=hmms.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6239], DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 17:22:07,402 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:138 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:22:07,473 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:141 - ==========getDeployedPublishIds============
+2014-09-04 17:22:07,474 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - [null, null, 33]
+2014-09-04 17:22:07,474 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - ==========getDeployedPublishIds============
+2014-09-04 17:22:08,000 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:22:08,001 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:22:08,001 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:22:08,002 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:22, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6239]
+2014-09-04 17:22:08,002 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:22:08,002 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:22:08,002 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:22:08,633 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:22:08,633 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:22:08,635 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:22:08,636 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 17:22, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6244]
+2014-09-04 17:22:08,636 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:22:08,637 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:22:08,637 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:22:09,060 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:22:09,060 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=176, packageName=qdzzjs.2014090501.war, executeTime=2014-09-04 15:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=178, packageName=vom.2014090401.war, executeTime=2014-09-04 16:02, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=179, packageName=vom.2014090401.war, executeTime=2014-09-04 16:16, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=180, packageName=vom.2014090401.war, executeTime=2014-09-04 16:30, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=181, packageName=vom.2014090401.war, executeTime=2014-09-04 16:53, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=182, packageName=vom.2014090401.war, executeTime=2014-09-04 16:58, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=183, packageName=vom.2014090401.war, executeTime=2014-09-04 17:03, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=184, packageName=vom.2014090401.war, executeTime=2014-09-04 17:12, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=185, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:17, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=186, packageName=vom.2014090401.war, executeTime=2014-09-04 17:17, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=187, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:22, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=188, packageName=vom.2014090401.war, executeTime=2014-09-04 17:22, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 17:22:09,061 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:22:09,062 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:09,062 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 176, packageName = qdzzjs.2014090501.war
+2014-09-04 17:22:09,063 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:11,758 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:11,758 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 178, packageName = vom.2014090401.war
+2014-09-04 17:22:11,759 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:12,780 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:12,780 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 179, packageName = vom.2014090401.war
+2014-09-04 17:22:12,781 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:13,813 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:13,813 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 180, packageName = vom.2014090401.war
+2014-09-04 17:22:13,814 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:14,967 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:14,967 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 181, packageName = vom.2014090401.war
+2014-09-04 17:22:14,968 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:16,080 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:16,080 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 182, packageName = vom.2014090401.war
+2014-09-04 17:22:16,080 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:17,304 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:17,304 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 183, packageName = vom.2014090401.war
+2014-09-04 17:22:17,305 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:18,510 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:18,510 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 184, packageName = vom.2014090401.war
+2014-09-04 17:22:18,511 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:19,712 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:19,712 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 185, packageName = hmms.2014090401.war
+2014-09-04 17:22:19,712 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:20,768 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:20,768 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 186, packageName = vom.2014090401.war
+2014-09-04 17:22:20,768 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:21,789 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:21,789 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 187, packageName = hmms.2014090401.war
+2014-09-04 17:22:21,790 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:22,816 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:22,816 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 188, packageName = vom.2014090401.war
+2014-09-04 17:22:22,816 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:22:23,890 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============
+2014-09-04 17:24:03,868 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:23 - ============== DeployScheduleFromAlmJob begin =============
+2014-09-04 17:24:04,983 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:136 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:24:04,984 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:137 - [DeploySchedule [id=null, packageName=hmms.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6239], DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=null, executor=null, phoneNums=null, status=null, deployMessage=null, publishId=6244]]
+2014-09-04 17:24:04,984 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:138 - ============searchDeployScheduleFromAlm=============
+2014-09-04 17:24:05,086 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:141 - ==========getDeployedPublishIds============
+2014-09-04 17:24:05,086 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:142 - [null, null]
+2014-09-04 17:24:05,087 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.searchDeployScheduleFromAlm:143 - ==========getDeployedPublishIds============
+2014-09-04 17:24:05,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:24:05,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:24:05,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:24:05,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:24, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6239]
+2014-09-04 17:24:05,524 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:24:05,524 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:24:05,524 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:24:06,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:44 - |                                                            |
+2014-09-04 17:24:06,091 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:45 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:24:06,093 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:46 - |                                                            |
+2014-09-04 17:24:06,093 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:47 - DeploySchedule [id=null, packageName=vom.2014090401.war, executeTime=2014-09-04 17:24, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=6244]
+2014-09-04 17:24:06,094 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:48 - |                                                            |
+2014-09-04 17:24:06,094 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:49 - | ----------------createDeploySchedule---------------------- |
+2014-09-04 17:24:06,094 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.createDeploySchedule:50 - |                                                            |
+2014-09-04 17:24:06,304 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:40 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:24:06,305 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:41 - [DeploySchedule [id=189, packageName=hmms.2014090401.war, executeTime=2014-09-04 17:24, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null], DeploySchedule [id=190, packageName=vom.2014090401.war, executeTime=2014-09-04 17:24, executor=ALM, phoneNums=null, status=0, deployMessage=null, publishId=null]]
+2014-09-04 17:24:06,306 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:42 - ======== ALM * ALM * getToBeDeployedApps * ALM * ALM =========
+2014-09-04 17:24:06,307 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:24:06,308 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 189, packageName = hmms.2014090401.war
+2014-09-04 17:24:06,308 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:24:07,900 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:95 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:24:07,900 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:96 - id = 190, packageName = vom.2014090401.war
+2014-09-04 17:24:07,901 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:97 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-09-04 17:24:08,963 INFO  com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob.execute:44 - =============== DeployScheduleFromAlmJob end ==============

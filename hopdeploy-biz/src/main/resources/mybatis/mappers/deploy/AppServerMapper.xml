@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.AppServerDAO">
+ 
+	<resultMap id="appServerResultMap" type="appServer">
+		<id column="id" property="id" javaType="int" jdbcType="NUMERIC" />
+        <result property="ip" column="ip" />
+        <result property="port" column="port" />
+        <result property="parentId" column="parent_id" />
+        <result property="nodeName" column="node_name" />
+        <result property="middlewarePath" column="middleware_path" />
+        <result property="memo" column="memo" />
+	</resultMap>
+	
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize} ) where rownum_ >= #{pager.firstResult}]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	<!-- 选择所有列 -->
+	<sql id="searchAppServerCount_fragement">
+	    select 
+	           weblogic_.ID,
+	    	   weblogic_.IP,
+	    	   weblogic_.PORT,
+	    	   weblogic_.PARENT_ID,
+	    	   weblogic_.NODE_NAME,
+	    	   weblogic_.MIDDLEWARE_PATH,
+	    	   weblogic_.MEMO
+	      from 
+	           t_weblogic_info weblogic_
+	</sql>
+	
+	<!-- 根据id进行查询 -->
+	<select id="searchAppServer" parameterType="integer" resultMap="appServerResultMap">
+		<include refid="pagination_Head" />
+		<include refid="searchAppServerCount_fragement" />
+		where 
+		      weblogic_.PARENT_ID = #{id}
+		order by
+		      LOWER(weblogic_.IP) ASC,
+		      TO_NUMBER(weblogic_.PORT) ASC
+		<include refid="pagination_Tail" /> 			
+	</select>
+	
+	<!-- 查询某一管理服务器对应应用管理器数目 --> 
+	<select id="searchAppServerCount" parameterType="integer" resultType="long">
+		<include refid="count_Start_Head" />
+		<include refid="searchAppServerCount_fragement" />
+		where 
+		      weblogic_.PARENT_ID = #{id}
+		<include refid="count_Start_Tail" /> 			
+	</select>
+	
+	<!-- 根据ip、port确定应用节点服务器的唯一性 -->
+	<select id="searchAppServerByIpPort" parameterType="appServer" resultMap="appServerResultMap">
+		<include refid="searchAppServerCount_fragement" />
+		where 
+		      weblogic_.IP    =  #{appServer.ip}
+		  and 
+		      weblogic_.PORT  =  #{appServer.port}
+	</select>
+	
+	<!-- 根据id查询 -->
+	<select id="get" resultMap="appServerResultMap">
+		<include refid="searchAppServerCount_fragement" />
+		<![CDATA[
+			where weblogic_.ID = #{id}
+		]]>
+	</select>
+	
+	<!-- 保存应用服务器信息 -->
+	<insert id="save" parameterType="appServer">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			SELECT seq_server_id.NEXTVAL AS id FROM DUAL
+		</selectKey>	
+		<![CDATA[
+		  INSERT INTO 
+		      T_WEBLOGIC_INFO weblogic_
+			  (
+			       weblogic_.ID,
+		    	   weblogic_.IP,
+		    	   weblogic_.PORT,
+		    	   weblogic_.PARENT_ID,
+		    	   weblogic_.NODE_NAME,
+		    	   weblogic_.MIDDLEWARE_PATH,
+		    	   weblogic_.MIDDLEWARE_TYPE,
+		    	   weblogic_.MEMO
+			  )
+			   Values
+			  (
+			       #{id},
+			       #{ip},
+			       #{port},
+			       #{parentId},
+			       #{nodeName},
+			       #{middlewarePath},
+			       #{middlewareType},
+			       #{memo}
+			   )
+	    ]]>
+	</insert>
+	
+	<!-- 更新AppServer -->
+	<update id="update" parameterType="appServer">
+		<![CDATA[
+		UPDATE t_weblogic_info weblogic_
+		 SET   
+	    	 weblogic_.IP          =    #{ip},
+	    	 weblogic_.PORT        =    #{port},
+	    	 weblogic_.PARENT_ID   =    #{parentId},
+	    	 weblogic_.NODE_NAME   =    #{nodeName},
+	    	 weblogic_.MIDDLEWARE_PATH= #{middlewarePath},
+	    	 weblogic_.MEMO        =    #{memo}
+		 WHERE 
+		     weblogic_.id = #{id}
+		]]>
+	</update>
+	<!-- 删除AppServer -->
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+		delete from T_WEBLOGIC_INFO where id = #{id}
+		]]>
+	</delete>
+	
+	<!-- 当删除管理服务器时，应用服务器也随之删掉 -->
+	<delete id="deleteByParentId" parameterType="int">
+		<![CDATA[
+			delete from T_WEBLOGIC_INFO where parent_id = #{weblogicId}
+		]]>
+	</delete>
+	
+</mapper>

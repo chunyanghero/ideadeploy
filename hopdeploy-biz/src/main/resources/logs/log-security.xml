@@ -1,0 +1,7 @@
+<logger>
+	<target-class name="com.haier.openplatform.showcase.security.service.impl.UserServiceImpl">
+		<target-method name="login" type="1" module="1">
+			<message>'用户'+#userName+'在'+#ipAddress+'登录'</message>
+		</target-method>
+	</target-class>
+</logger>

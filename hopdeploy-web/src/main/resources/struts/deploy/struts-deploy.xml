@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="deploy" extends="hopdeploy" namespace="/deploy">
+	<!-- ===== 应用及对应服务器操作 ===== -->
+		<!-- 创建应用及对应服务器信息 -->
+		<action name="createAppRelateServerInit">
+			<result>/WEB-INF/pages/deploy/create_app_relate_server.jsp</result>
+		</action>
+		
+		<action name="createAppRelateServer" class="createAppRelateServerAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		<!-- 删除应用及对应服务器信息 -->
+		<action name="deleteAppRelateServer" class="deleteAppRelateServerAction">
+			<!-- <interceptor-ref name="jsonCRUDStack"></interceptor-ref> -->
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		<!-- 更新应用及对应服务器信息 -->
+		<action name="updateAppRelateServerInit" class="updateAppRelateServerInitAction">
+			<result name="success">/WEB-INF/pages/deploy/update_app_relate_server.jsp
+			</result>
+		</action>
+		<action name="updateAppRelateServer" class="updateAppRelateServerAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		<!-- 查询应用及其对应管理服务器信息 -->
+		<action name="searchAppRelateServerInit" class="searchAppRelateServerInitAction">
+	         <result>/WEB-INF/pages/deploy/search_app_relate_server.jsp</result>
+		</action>
+		
+		<action name="searchAppRelateServer" class="searchAppRelateServerAction">
+			<result name="success" type="easyui">
+				<param name="contentType">text/html</param>
+			</result>
+		</action>
+		
+		<action name="searchAppRelateServerForCombobox" class="searchAppRelateServerForComboboxAction">
+			<result name="success" type="json">
+				<param name="root">combobox</param>
+			</result>
+		</action>
+
+		
+	<!-- ===== 管理服务器操作 ===== -->
+		<!-- 非WEBLOGIC服务器发版指南 -->
+		<action name="updateNotWeblogicDeployTutorialInit" class="updateNotWeblogicDeployTutorialInitAction">
+			<result name="success">/WEB-INF/pages/deploy/update_not_weblogic_deploy_method.jsp</result>
+		</action>
+		<action name="updateNotWeblogicDeployTutorial" class="updateNotWeblogicDeployTutorialAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		
+	<!-- ===== 应用服务器操作 ===== -->
+		<!-- 创建应用服务器信息 -->
+		<action name="createAppServerInit" class="createAppServerInitAction">
+			<result>/WEB-INF/pages/deploy/create_app_server.jsp</result>
+		</action>
+		
+		<action name="createAppServer" class="createAppServerAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<!-- 删除应用服务器信息 -->
+		<action name="deleteAppServer" class="deleteAppServerAction">
+			<!-- <interceptor-ref name="jsonCRUDStack"></interceptor-ref> -->
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		<!-- 根据管理服务器查询应用服务器信息 -->
+		<action name="searchAppServerInit" class="searchAppServerInitAction">
+			<result>/WEB-INF/pages/deploy/search_app_server.jsp</result>
+		</action>
+		
+		<action name="searchAppServer" class="searchAppServerAction">
+			<result name="success" type="easyui">
+				<param name="contentType">text/html</param>
+			</result>
+		</action>
+		<action name="updateAppServerInit" class="updateAppServerInitAction">
+			<result name="success">/WEB-INF/pages/deploy/update_app_server.jsp
+			</result>
+		</action>
+		<action name="updateAppServer" class="updateAppServerAction">
+			<!-- <interceptor-ref name="jsonCRUDStack"></interceptor-ref> -->
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		<!-- 服务器用户名密码查询 -->
+		<action name="searchUnixInfoInit" class="searchUnixInfoInitAction">
+			<result>/WEB-INF/pages/deploy/search_unix_info.jsp</result>
+		</action>
+		<action name="searchNWUnixInfoInit" class="searchNWUnixInfoInitAction">
+			<result>/WEB-INF/pages/deploy/search_nw_unix_info.jsp</result>
+		</action>
+		
+		<action name="searchUnixInfo" class="searchUnixInfoAction">
+			<result name="success" type="easyui"></result>
+		</action>
+		<action name="searchNWUnixInfo" class="searchNWUnixInfoAction">
+			<result name="success" type="easyui"></result>
+		</action>
+		<action name="updateUnixInfo" class="updateUnixInfoAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="updateNWUnixInfo" class="updateNWUnixInfoAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		
+		<action name="manualDeployInit" class="manualDeployInitAction">
+			<result>/WEB-INF/pages/deploy/manual_deploy_init.jsp</result>
+		</action>
+		<action name="updateWeblogicShell" class="updateWeblogicShellAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="manualDeploy" class="manualDeployAction">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 设置定时发版任务 -->
+		<action name="setDeployTimeInit">
+			<result>/WEB-INF/pages/deploy/set_deploy_time_init.jsp</result>
+		</action>
+		<action name="searchDeployMessage" class="searchDeployMessageAction">
+			<result name="success" type="json">
+			</result>
+		</action>
+		
+		<action name="searchDeploySchedule" class="searchDeployScheduleAction">
+			<result name="success" type="easyui"></result>
+		</action>
+		<action name="createDeploySchedule" class="createDeployScheduleAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="deleteDeploySchedule" class="deleteDeployScheduleAction">
+			<!-- <interceptor-ref name="jsonCRUDStack"></interceptor-ref> -->
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="confirmDeploySchedule" class="confirmDeployScheduleAction">
+			<!-- <interceptor-ref name="jsonCRUDStack"></interceptor-ref> -->
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="searchExecutorForCombobox" class="searchExecutorForComboboxAction">
+			<result name="success" type="json">
+				<param name="root">combobox</param>
+			</result>
+		</action>
+		
+		<action name="searchManualDeployResultInit">
+			<result>/WEB-INF/pages/deploy/search_manual_deploy_result_init.jsp</result>
+		</action>
+		<action name="searchManualDeployResult" class="searchManualDeployResultAction">
+			<result name="success" type="easyui">
+				<param name="contentType">text/html</param>
+			</result>
+		</action>
+		<action name="searchManualDeployResultByTaskId" class="searchManualDeployResultByTaskIdAction">
+			<result name="success" type="json">
+			</result>
+		</action>
+		<action name="deleteManualDeployResult" class="deleteManualDeployResultAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="changeWeblogicPassword" class="changeWeblogicPasswordAction">
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">actionErrors\[\d+\],
+					fieldErrors\..+$,actionMessages\[\d+\]</param>
+			</result>
+		</action>
+		<action name="changeWeblogicPasswordInit" class="changeWeblogicPasswordInitAction">
+			<result type="json"></result>
+		</action>
+	</package>
+</struts>

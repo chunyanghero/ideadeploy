@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.AppRelateServerDAO">
+ 
+	<resultMap id="appRelateServerResultMap" type="appRelateServer">
+        <result property="applicationId" column="application_id" />
+        <result property="applicationCode" column="application_code" />
+        <result property="applicationName" column="application_name" />
+        <result property="applicationAbbr" column="application_abbr" />
+        <result property="deployType" column="deploy_type" />
+        <result property="packageType" column="package_type" />
+        <result property="weblogicId" column="weblogic_id" />
+        <result property="engineer" column="engineer" />
+        <result property="engineerMail" column="engineer_mail" />
+        <result property="engineerNumber" column="engineer_number" />
+        <result property="psiConner" column="psi_conner" />
+        <result property="psiConnerNumber" column="psi_conner_number" />
+        <result property="deployNodes" column="deploy_nodes" />
+        
+        <result property="id" column="id" />
+        <result property="ip" column="ip" />
+        <result property="port" column="port" />
+        <result property="login" column="login" />
+        <result property="passwd" column="passwd" />
+        <result property="parentId" column="parent_id" />
+        <result property="nodeName" column="node_name" />
+        <result property="memo" column="memo" />
+        <result property="middlewareType" column="middleware_type" />
+        <result property="middlewarePath" column="middleware_path" />
+        <result property="specificPath" column="specific_path" />
+        <result property="osType" column="os_type" />
+        <result property="checkUrl" column="check_url" />
+	</resultMap>
+	
+	
+	<resultMap id="unixInfoMap" type="unixInfo">
+		<result property="id" column="id" />
+		<result property="ip" column="ip" />
+		<result property="parentId" column="parent_id" />
+		<result property="unixUsername" column="unix_username" />
+		<result property="unixPassword" column="unix_password" />
+		<result property="ftpIp" column="ftp_ip"/>
+		<result property="ftpUsername" column="ftp_username"/>
+        <result property="ftpPassword" column="ftp_password"/>
+	</resultMap>
+	
+	
+	
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize}*#{pager.currentPage} ) where rownum_ > #{pager.firstResult}]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	<sql id="selectAllColumns">
+		select app_.APPLICATION_ID,
+	    	   app_.APPLICATION_NAME,
+	    	   app_.WEBLOGIC_ID,
+	    	   app_.APPLICATION_ABBR,
+	    	   app_.APPLICATION_CODE,
+	    	   app_.ENGINEER,
+	    	   app_.ENGINEER_MAIL,
+	    	   app_.ENGINEER_NUMBER,
+	    	   app_.PSI_CONNER,
+	    	   app_.PSI_CONNER_NUMBER,
+	    	   app_.DEPLOY_TYPE,
+	    	   app_.PACKAGE_TYPE,
+	    	   app_.DEPLOY_NODES,
+	    	   server_.ID,
+	    	   server_.IP,
+	    	   server_.PORT,
+	    	   server_.LOGIN,
+	    	   server_.PASSWD,
+	    	   server_.PARENT_ID,
+	    	   server_.NODE_NAME,
+	    	   server_.MEMO,
+	    	   server_.MIDDLEWARE_TYPE,
+	    	   server_.MIDDLEWARE_PATH,
+	    	   server_.SPECIFIC_PATH,
+	    	   server_.OS_TYPE,
+	    	   server_.CHECK_URL
+	      from t_app app_,
+	           t_weblogic_info server_
+	      where 
+	       app_.WEBLOGIC_ID = server_.ID
+	</sql>
+	<sql id="searchAppRelateServer_fragement">
+        <include refid="selectAllColumns" />
+	    <if test="appRelateServer.applicationName != null and appRelateServer.applicationName != ''">
+		    and app_.APPLICATION_NAME like '%' || trim(#{appRelateServer.applicationName}) || '%'
+	    </if>
+		<if test="appRelateServer.applicationCode != null and appRelateServer.applicationCode != ''">
+			and app_.APPLICATION_CODE like '%' || trim(#{appRelateServer.applicationCode}) || '%'
+		</if>
+		<if test="appRelateServer.applicationAbbr != null and appRelateServer.applicationAbbr != ''">
+			and app_.APPLICATION_ABBR like '%' || trim(#{appRelateServer.applicationAbbr}) || '%'
+		</if>
+		<if test="appRelateServer.ip != null and appRelateServer.ip != ''">
+			and server_.IP like '%' || trim(#{appRelateServer.ip}) || '%'
+		</if>
+		
+	</sql>
+	<sql id="searchAppRelateServer_order_fragement">
+		ORDER BY
+			LOWER(app_.APPLICATION_ABBR) ASC,
+			LOWER(app_.APPLICATION_CODE) ASC
+	</sql>
+	
+	<!-- 根据条件进行模糊查询 -->
+	<select id="searchAppRelateServer" parameterType="appRelateServer" resultMap="appRelateServerResultMap">
+		<include refid="pagination_Head" />
+		<include refid="searchAppRelateServer_fragement" />
+		<include refid="searchAppRelateServer_order_fragement" />
+		<include refid="pagination_Tail" /> 			
+	</select>
+	
+	<!-- 用来模糊查询时自动补全 -->
+	<select id="searchAppRelateServerForCombobox" resultMap="appRelateServerResultMap">
+		select distinct
+	    	   app_.APPLICATION_ABBR
+	    from t_app app_
+	    order by
+	           LOWER(app_.APPLICATION_ABBR)
+	</select>
+	
+	<!-- 查询结果数目 --> 
+	<select id="searchAppRelateServerCount" parameterType="appRelateServer" resultType="long">
+		<include refid="count_Start_Head" />
+		<include refid="searchAppRelateServer_fragement" />
+		<include refid="count_Start_Tail" /> 			
+	</select>
+	
+	<!-- 根据applicationId取值 -->
+	<select id="get" resultMap="appRelateServerResultMap">
+		<include refid="selectAllColumns" />
+		and app_.APPLICATION_ID = #{applicationId}		
+	</select>
+	
+	<!-- 根据ID查询应用所部署的所有服务器的用户名密码 -->
+	<select id="searchUnixInfo" resultMap="unixInfoMap">
+		select distinct 
+				ip, parent_id, unix_username, unix_password, ftp_ip, ftp_username, ftp_password
+		from
+				t_weblogic_info
+		where	parent_id = #{id}
+		or		id		  = #{id}
+	</select>
+	<select id="searchNWUnixInfo" resultMap="unixInfoMap">
+		select
+				id, ip, unix_username, unix_password, ftp_ip, ftp_username, ftp_password
+		from
+				t_weblogic_info
+		where	id = #{id}
+	</select>
+	
+	<!-- 更新时，一个ip对应一台服务器 -->
+	<update id="updateUnixInfo" parameterType="unixInfo">
+		<![CDATA[
+		UPDATE t_weblogic_info
+		 SET 	    	 
+	    	 UNIX_USERNAME   =    #{unixInfo.unixUsername},
+	    	 UNIX_PASSWORD   =    #{unixInfo.unixPassword},
+	    	 FTP_IP          =    #{unixInfo.ftpIp},
+	    	 FTP_USERNAME    =    #{unixInfo.ftpUsername},
+	    	 FTP_PASSWORD    =    #{unixInfo.ftpPassword}
+		 WHERE 
+		     IP              =    #{unixInfo.ip} 
+		 AND 
+		     MIDDLEWARE_TYPE = '1'
+		 AND
+		     PARENT_ID       =    #{unixInfo.parentId}
+		 ]]>
+	</update>
+	<update id="updateNWUnixInfo" parameterType="unixInfo">
+		<![CDATA[
+		UPDATE 
+			t_weblogic_info
+		SET 	    	 
+	    	 UNIX_USERNAME   =    #{unixInfo.unixUsername},
+	    	 UNIX_PASSWORD   =    #{unixInfo.unixPassword},
+	    	 FTP_IP          =    #{unixInfo.ftpIp},
+	    	 FTP_USERNAME    =    #{unixInfo.ftpUsername},
+	    	 FTP_PASSWORD    =    #{unixInfo.ftpPassword}
+		WHERE 
+			 ID              =    #{unixInfo.id} 
+		 ]]>
+	</update>
+	<select id="searchChangingPasswordServers" resultMap="appRelateServerResultMap">
+		SELECT
+			weblogic_.IP,
+			weblogic_.NODE_NAME,
+			weblogic_.PORT,
+			weblogic_.MIDDLEWARE_PATH,
+			weblogic_.PARENT_ID,
+			weblogic_.LOGIN,
+			weblogic_.PASSWD
+		FROM
+			T_WEBLOGIC_INFO weblogic_
+		WHERE
+			weblogic_.ID = #{id}
+	</select>
+	<update id="changeWeblogicPassword" parameterType="appRelateServer">
+		UPDATE
+			T_WEBLOGIC_INFO
+		SET
+			LOGIN  = #{appRelateServer.login},
+			PASSWD = #{appRelateServer.passwd}
+		WHERE
+			ID     = #{appRelateServer.id}
+	</update>
+	 
+</mapper>

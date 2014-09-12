@@ -1,0 +1,156 @@
+2014-08-08 10:09:29,528 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 10:09:29,569 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 97, packageName = alm.222.zip
+2014-08-08 10:09:29,569 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 10:09:32,788 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 10:09:32,788 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 98, packageName = golem.222.zip
+2014-08-08 10:09:32,789 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 10:09:33,220 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 10:09:33,221 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - 10.135.13.112
+2014-08-08 10:09:33,222 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - 690jh
+2014-08-08 10:09:33,222 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - vvbLeg9r
+2014-08-08 10:09:33,223 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:103 - 10.135.16.79
+2014-08-08 10:09:33,223 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - 690
+2014-08-08 10:09:33,224 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:105 - 690
+2014-08-08 10:09:33,224 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:106 - golem.222.zip
+2014-08-08 10:09:33,224 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:108 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 15:27:53,499 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 15:27:53,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 99, packageName = golem.222.zip
+2014-08-08 15:27:53,523 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 15:27:54,009 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 15:27:54,010 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - 10.135.13.112
+2014-08-08 15:27:54,011 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - 690jh
+2014-08-08 15:27:54,011 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - vvbLeg9r
+2014-08-08 15:27:54,012 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:103 - 10.135.16.79
+2014-08-08 15:27:54,012 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - 690
+2014-08-08 15:27:54,013 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:105 - 690
+2014-08-08 15:27:54,013 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:106 - golem.222.zip
+2014-08-08 15:27:54,014 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:108 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 15:28:04,259 ERROR org.hornetq.core.client.createConnection:553 - HQ214045: Failed to create netty connection
+java.net.SocketTimeoutException: connect timed out
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:351)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:213)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+	at java.net.Socket.connect(Socket.java:529)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.connect(OioClientSocketPipelineSink.java:105)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.eventSunk(OioClientSocketPipelineSink.java:65)
+	at org.jboss.netty.channel.Channels.connect(Channels.java:634)
+	at org.jboss.netty.channel.AbstractChannel.connect(AbstractChannel.java:207)
+	at org.jboss.netty.bootstrap.ClientBootstrap.connect(ClientBootstrap.java:229)
+	at org.jboss.netty.bootstrap.ClientBootstrap.connect(ClientBootstrap.java:182)
+	at org.hornetq.core.remoting.impl.netty.NettyConnector.createConnection(NettyConnector.java:505)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.getConnection(ClientSessionFactoryImpl.java:1225)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.getConnectionWithRetry(ClientSessionFactoryImpl.java:1071)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.connect(ClientSessionFactoryImpl.java:246)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:826)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnectionInternal(HornetQConnectionFactory.java:583)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:107)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:102)
+	at org.springframework.jms.connection.SingleConnectionFactory.doCreateConnection(SingleConnectionFactory.java:342)
+	at org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:288)
+	at org.springframework.jms.connection.SingleConnectionFactory.createConnection(SingleConnectionFactory.java:225)
+	at org.springframework.jms.support.JmsAccessor.createConnection(JmsAccessor.java:184)
+	at org.springframework.jms.core.JmsTemplate.access$500(JmsTemplate.java:85)
+	at org.springframework.jms.core.JmsTemplate$JmsTemplateResourceFactory.createConnection(JmsTemplate.java:1031)
+	at org.springframework.jms.connection.ConnectionFactoryUtils.doGetTransactionalSession(ConnectionFactoryUtils.java:297)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:453)
+	at org.springframework.jms.core.JmsTemplate.send(JmsTemplate.java:543)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:620)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:607)
+	at com.haier.openplatform.hmc.sender.SendMsgService.sendMsg(SendMsgService.java:24)
+	at com.haier.openplatform.hmc.sender.email.SendEmailService.sendEmail(SendEmailService.java:17)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.sendEmails(TaskServiceImpl.java:311)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl$$FastClassByCGLIB$$e8938931.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:698)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:94)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:51)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:55)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:42)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl$$EnhancerByCGLIB$$efe364a3.sendEmails(<generated>)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.handleDeployMessage(DeployScheduleServiceImpl.java:101)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule(DeployScheduleServiceImpl.java:88)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl$$FastClassByCGLIB$$87af4738.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:698)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:96)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:260)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:94)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:51)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:55)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:42)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl$$EnhancerByCGLIB$$978bc0ca.doDeploySchedule(<generated>)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImplTest_doDeploySchedule.test_doDeploySchedule(DeployScheduleServiceImplTest_doDeploySchedule.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+2014-08-08 15:52:36,517 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 15:52:36,522 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 100, packageName = golem.222.zip
+2014-08-08 15:52:36,522 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 15:52:37,401 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 15:52:37,402 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:103 - 10.135.13.112
+2014-08-08 15:52:37,402 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - 690jh
+2014-08-08 15:52:37,403 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:105 - vvbLeg9r
+2014-08-08 15:52:37,403 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:106 - 10.135.16.79
+2014-08-08 15:52:37,403 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:107 - 690
+2014-08-08 15:52:37,404 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:108 - 690
+2014-08-08 15:52:37,404 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:109 - golem.222.zip
+2014-08-08 15:52:37,405 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:111 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 15:55:16,251 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 15:55:16,256 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 101, packageName = golem.222.zip
+2014-08-08 15:55:16,256 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-08 15:55:17,428 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-08 15:55:17,429 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:103 - 10.135.13.112
+2014-08-08 15:55:17,429 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - 690jh
+2014-08-08 15:55:17,430 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:105 - vvbLeg9r
+2014-08-08 15:55:17,430 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:106 - 10.135.16.79
+2014-08-08 15:55:17,430 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:107 - 690
+2014-08-08 15:55:17,431 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:108 - 690
+2014-08-08 15:55:17,431 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:109 - golem.222.zip
+2014-08-08 15:55:17,432 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:111 - ========================= TaskServiceImpl.deployTask =======================

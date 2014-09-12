@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.PreTaskDAO">
+ 
+	<resultMap id="preTaskResultMap" type="preTask">
+        <id property="publishId" column="publish_id" javaType="long" jdbcType="NUMERIC" />
+        <result property="publishId" column="publish_id" />
+        <result property="taskId" column="task_id" />
+        <result property="packageName" column="package_name" />
+        <result property="packageType" column="package_type" />
+        <result property="applicationCode" column="application_code" />
+        <result property="state" column="state" />
+        <result property="requestDate" column="request_date" />
+        <result property="isUrgent" column="is_urgent" />
+        <result property="applicationAbbr" column="application_abbr" />
+        <result property="deployType" column="deploy_type" />
+        <result property="deployNodes" column="deploy_nodes" />
+        <result property="ip" column="ip" />
+        <result property="port" column="port" />
+        <result property="login" column="login" />
+        <result property="passwd" column="passwd" />
+        <result property="unixUsername" column="unix_username" />
+        <result property="unixPassword" column="unix_password" />
+        <result property="ftpIp" column="ftp_ip" />
+        <result property="ftpUsername" column="ftp_username" />
+        <result property="ftpPassword" column="ftp_password" />
+        <result property="middlewareType" column="middleware_type" />
+        <result property="middlewarePath" column="middleware_path" />
+        <result property="specificPath" column="specific_path" />
+        <result property="osType" column="os_type" />
+        <result property="checkUrl" column="check_url" />
+	</resultMap>
+	
+	<resultMap id="weblogicShellResultMap" type="weblogicShell">
+		<result property="weblogicShellIp" column="ip" />
+		<result property="weblogicShellUsername" column="unix_username" />
+		<result property="weblogicShellPassword" column="unix_password" />
+	</resultMap>
+	
+	
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{model.pager.pageSize} * #{model.pager.currentPage} ) where rownum_ >= #{model.pager.firstResult} + 1]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	
+	<!-- 查询出一个部署任务所需的字段 -->
+	<select id="scanPreTask" parameterType="almTask">
+	<![CDATA[
+		SELECT
+			"app_".APPLICATION_CODE,
+			"app_".WEBLOGIC_ID,
+			"app_".DEPLOY_TYPE,
+			"app_".PACKAGE_TYPE,
+			"weblogic_".IP,
+			"weblogic_".PORT,
+			"weblogic_".LOGIN,
+			"weblogic_".PASSWD,
+			"weblogic_".FTP_USERNAME,
+			"weblogic_".FTP_PASSWORD,
+			"weblogic_".MIDDLEWARE_PATH,
+			"weblogic_".OS_TYPE,
+			"weblogic_".UNIX_PASSWORD,
+			"weblogic_".UNIX_USERNAME,
+			"weblogic_".ID
+		FROM
+			AUTODEPLOY.T_APP "app_" ,
+			AUTODEPLOY.T_WEBLOGIC_INFO "weblogic_"
+		WHERE
+			"app_".APPLICATION_CODE = #{almTask.applicationCode}
+		AND
+			"app_".WEBLOGIC_ID      = "weblogic_".ID
+	]]>
+	</select>
+	
+	<select id="getPreTaskByPackage" resultMap="preTaskResultMap">
+		<![CDATA[
+		SELECT
+			"app_".APPLICATION_CODE,
+			"app_".APPLICATION_ABBR,
+			"app_".WEBLOGIC_ID,
+			"app_".DEPLOY_TYPE,
+			"app_".PACKAGE_TYPE,
+			"app_".DEPLOY_NODES,
+			"weblogic_".IP,
+			"weblogic_".PORT,
+			"weblogic_".LOGIN,
+			"weblogic_".PASSWD,
+			"weblogic_".FTP_IP,
+			"weblogic_".FTP_USERNAME,
+			"weblogic_".FTP_PASSWORD,
+			sysdate as REQUEST_DATE,
+			"weblogic_".MIDDLEWARE_PATH,
+			"weblogic_".SPECIFIC_PATH,
+			"weblogic_".MIDDLEWARE_TYPE,
+			"weblogic_".OS_TYPE,
+			"weblogic_".UNIX_PASSWORD,
+			"weblogic_".UNIX_USERNAME,
+			"weblogic_".ID,
+			"weblogic_".CHECK_URL
+		FROM
+			AUTODEPLOY.T_APP "app_" ,
+			AUTODEPLOY.T_WEBLOGIC_INFO "weblogic_"
+		WHERE
+			"app_".APPLICATION_ABBR  = #{appName}
+		AND
+			"app_".PACKAGE_TYPE      = #{packageType}
+		AND
+			"app_".WEBLOGIC_ID       = "weblogic_".ID
+	]]>
+	</select>
+	
+	<select id="searchWeblogicShell" resultMap="weblogicShellResultMap">
+		<![CDATA[
+		SELECT
+			"weblogic_".IP,
+			"weblogic_".UNIX_PASSWORD,
+			"weblogic_".UNIX_USERNAME
+		FROM
+			AUTODEPLOY.T_WEBLOGIC_INFO "weblogic_"
+		WHERE
+			"weblogic_".MIDDLEWARE_TYPE = '5'
+		]]> 
+	</select>
+	
+	<update id="changeWeblogicShell" parameterType="weblogicShell">
+		UPDATE T_WEBLOGIC_INFO
+		 SET 
+		    IP              = #{weblogicShell.weblogicShellIp},
+			UNIX_PASSWORD   = #{weblogicShell.weblogicShellPassword},
+			UNIX_USERNAME   = #{weblogicShell.weblogicShellUsername}
+		 WHERE 
+		    MIDDLEWARE_TYPE = '5'
+	</update>
+
+</mapper>

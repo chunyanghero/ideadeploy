@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+     http://www.springframework.org/schema/jee 
+     http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.1.xsd
+     http://www.springframework.org/schema/lang
+     http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+     http://www.springframework.org/schema/util
+     http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+	<!-- action -->
+	<bean id="baseDeployAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.BaseDeployAction" scope="prototype" parent="baseAction">
+		<property name="appRelateServerService" ref="appRelateServerService"></property>
+		<property name="appServerService" ref="appServerService"></property>
+		<property name="appService" ref="appService"></property>
+		<property name="deployService" ref="deployService"></property>
+		<property name="deployScheduleService" ref="deployScheduleService"></property>
+	</bean>
+	
+	<!-- ==== AppRelateServer Operation ==== -->
+	
+	<bean id="createAppRelateServerAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.CreateAppRelateServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="deleteAppRelateServerAction"	
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.DeleteAppRelateServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="updateAppRelateServerInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateAppRelateServerInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="updateAppRelateServerAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateAppRelateServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="searchAppRelateServerInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchAppRelateServerInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchAppRelateServerAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchAppRelateServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="searchAppRelateServerForComboboxAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchAppRelateServerForComboboxAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="updateNotWeblogicDeployTutorialInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateNotWeblogicDeployTutorialInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="updateNotWeblogicDeployTutorialAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateNotWeblogicDeployTutorialAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<!-- ==== AppServer Operation ==== -->
+	<bean id="createAppServerInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.CreateAppServerInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="createAppServerAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.CreateAppServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="deleteAppServerAction"	
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.DeleteAppServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+		
+	<bean id="updateAppServerInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateAppServerInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="updateAppServerAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateAppServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="searchAppServerInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchAppServerInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchAppServerAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchAppServerAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<!-- ==== 服务器用户名、密码 ==== -->
+	<bean id="searchUnixInfoInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchUnixInfoInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchNWUnixInfoInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchNWUnixInfoInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchUnixInfoAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchUnixInfoAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchNWUnixInfoAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchNWUnixInfoAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="updateUnixInfoAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateUnixInfoAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="updateNWUnixInfoAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateNWUnixInfoAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	
+	<bean id="manualDeployInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.ManualDeployInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="updateWeblogicShellAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.UpdateWeblogicShellAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="manualDeployAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.ManualDeployAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchDeployScheduleAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchDeployScheduleAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="createDeployScheduleAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.CreateDeployScheduleAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="deleteDeployScheduleAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.DeleteDeployScheduleAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchExecutorForComboboxAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchExecutorForComboboxAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="confirmDeployScheduleAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.ConfirmDeployScheduleAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchDeployMessageAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchDeployMessageAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchManualDeployResultAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchManualDeployResultAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="searchManualDeployResultByTaskIdAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.SearchManualDeployResultByTaskIdAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="deleteManualDeployResultAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.DeleteManualDeployResultAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="changeWeblogicPasswordInitAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.ChangeWeblogicPasswordInitAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+	<bean id="changeWeblogicPasswordAction"
+		class="com.haier.openplatform.hopdeploy.deploy.webapp.action.ChangeWeblogicPasswordAction" scope="prototype" parent="baseDeployAction">
+	</bean>
+</beans>

@@ -1,0 +1,390 @@
+2014-08-07 09:25:42,221 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 09:25:42,246 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address 4f:ffffffdc:40:32:76:22
+2014-08-07 09:25:47,268 DEBUG org.hornetq.core.client.getConnectionWithRetry:1068 - Trying reconnection attempt 0/1
+2014-08-07 09:25:47,282 DEBUG org.hornetq.core.client.getConnection:1209 - Trying to connect with connector = org.hornetq.core.remoting.impl.netty.NettyConnectorFactory@168af51, parameters = {port=6445, host=10.135.6.66} connector = NettyConnector [host=10.135.6.66, port=6445, httpEnabled=false, useServlet=false, servletPath=/messaging/HornetQServlet, sslEnabled=false, useNio=false]
+2014-08-07 09:25:47,339 DEBUG org.hornetq.core.client.start:424 - Started Netty Connector version 3.6.2.Final-c0d783c
+2014-08-07 09:25:47,340 DEBUG org.hornetq.core.client.getConnection:1222 - Trying to connect at the main server using connector :TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66
+2014-08-07 09:25:47,340 DEBUG org.hornetq.core.client.createConnection:503 - Remote destination: /10.135.6.66:6445
+2014-08-07 09:25:48,376 DEBUG org.hornetq.core.client.getConnection:1231 - Main server is not up. Hopefully there's a backup configured now!
+2014-08-07 09:25:48,386 DEBUG org.hornetq.core.client.getConnectionWithRetry:1089 - Trying to connect towards ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66, backupConfig=null]
+2014-08-07 09:25:48,407 DEBUG org.hornetq.core.client.getConnectionWithRetry:1068 - Trying reconnection attempt 0/1
+2014-08-07 09:25:48,407 DEBUG org.hornetq.core.client.getConnection:1209 - Trying to connect with connector = org.hornetq.core.remoting.impl.netty.NettyConnectorFactory@d11f32, parameters = {port=5445, host=10.135.7.58} connector = NettyConnector [host=10.135.7.58, port=5445, httpEnabled=false, useServlet=false, servletPath=/messaging/HornetQServlet, sslEnabled=false, useNio=false]
+2014-08-07 09:25:48,408 DEBUG org.hornetq.core.client.start:424 - Started Netty Connector version 3.6.2.Final-c0d783c
+2014-08-07 09:25:48,408 DEBUG org.hornetq.core.client.getConnection:1222 - Trying to connect at the main server using connector :TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58
+2014-08-07 09:25:48,408 DEBUG org.hornetq.core.client.createConnection:503 - Remote destination: /10.135.7.58:5445
+2014-08-07 09:25:48,436 DEBUG org.hornetq.core.client.getConnectionWithRetry:1130 - Reconnection successfull
+2014-08-07 09:25:48,443 DEBUG org.hornetq.core.client.run:1594 - Node e3aaa4cf-1857-11e4-b35a-dfb11c239a34 going up, connector = Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null], isLast=true csf created at
+serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]
+java.lang.Exception
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.<init>(ClientSessionFactoryImpl.java:197)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:808)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnectionInternal(HornetQConnectionFactory.java:583)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:107)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:102)
+	at org.springframework.jms.connection.SingleConnectionFactory.doCreateConnection(SingleConnectionFactory.java:342)
+	at org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:288)
+	at org.springframework.jms.connection.SingleConnectionFactory.createConnection(SingleConnectionFactory.java:225)
+	at org.springframework.jms.support.JmsAccessor.createConnection(JmsAccessor.java:184)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:456)
+	at org.springframework.jms.core.JmsTemplate.send(JmsTemplate.java:543)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:620)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:607)
+	at com.haier.openplatform.hmc.sender.SendMsgService.sendMsg(SendMsgService.java:24)
+	at com.haier.openplatform.console.audit.HOPServiceAuditHandler.afterThrowing(HOPServiceAuditHandler.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:603)
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:42)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl$$EnhancerByCGLIB$$b42516bd.SearchManualDeployResult(<generated>)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImplTest_SearchManualDeployResult.test_SearchManualDeployResult(TaskServiceImplTest_SearchManualDeployResult.java:16)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+2014-08-07 09:25:48,447 DEBUG org.hornetq.core.client.notifyNodeUp:1509 - NodeUp ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]::nodeID=e3aaa4cf-1857-11e4-b35a-dfb11c239a34, connectorPair=Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null]
+java.lang.Exception: trace
+	at org.hornetq.core.client.impl.ServerLocatorImpl.notifyNodeUp(ServerLocatorImpl.java:1509)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl$Channel0Handler$1.run(ClientSessionFactoryImpl.java:1611)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+2014-08-07 09:25:48,448 DEBUG org.hornetq.core.client.updateMember:199 - Topology@1ba4806[owner=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]]::NewMemeberAdd nodeId=e3aaa4cf-1857-11e4-b35a-dfb11c239a34 member = TopologyMember[name = null, connector=Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null]]
+java.lang.Exception: trace
+	at org.hornetq.core.client.impl.Topology.updateMember(Topology.java:199)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.notifyNodeUp(ServerLocatorImpl.java:1514)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl$Channel0Handler$1.run(ClientSessionFactoryImpl.java:1611)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+2014-08-07 09:25:48,448 DEBUG org.hornetq.core.client.setBackupConnector:295 - ClientSessionFactoryImpl received backup update for live/backup pair = TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58 / null but it didn't belong to TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58
+2014-08-07 09:25:48,659 DEBUG org.hornetq.core.client.close:948 - Calling close on session ClientSessionImpl [name=c2fedb22-1dd1-11e4-87c2-4fdc40327616, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@e6235d
+2014-08-07 09:25:48,663 DEBUG org.hornetq.core.client.doCleanup:2046 - calling cleanup on ClientSessionImpl [name=c2fedb22-1dd1-11e4-87c2-4fdc40327616, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@e6235d
+2014-08-07 09:25:48,788 DEBUG org.hornetq.core.client.close:948 - Calling close on session ClientSessionImpl [name=c2fae381-1dd1-11e4-87c2-4fdc40327616, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@18c668c
+2014-08-07 09:25:48,791 DEBUG org.hornetq.core.client.doCleanup:2046 - calling cleanup on ClientSessionImpl [name=c2fae381-1dd1-11e4-87c2-4fdc40327616, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@18c668c
+2014-08-07 09:25:48,794 DEBUG org.hornetq.core.client.close:942 - Session was already closed, giving up now, this=ClientSessionImpl [name=c2fae381-1dd1-11e4-87c2-4fdc40327616, username=null, closed=true, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=bf479f7e-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=bf479f7d-1dd1-11e4-87c2-4fdc40327616, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@18c668c
+2014-08-07 09:44:21,207 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 09:44:21,210 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address ffffffa9:ffffff82:2b:ffffffda:ffffffd3:52
+2014-08-07 09:44:26,893 DEBUG org.hornetq.core.client.getConnectionWithRetry:1068 - Trying reconnection attempt 0/1
+2014-08-07 09:44:26,908 DEBUG org.hornetq.core.client.getConnection:1209 - Trying to connect with connector = org.hornetq.core.remoting.impl.netty.NettyConnectorFactory@111e86f, parameters = {port=5445, host=10.135.7.58} connector = NettyConnector [host=10.135.7.58, port=5445, httpEnabled=false, useServlet=false, servletPath=/messaging/HornetQServlet, sslEnabled=false, useNio=false]
+2014-08-07 09:44:26,971 DEBUG org.hornetq.core.client.start:424 - Started Netty Connector version 3.6.2.Final-c0d783c
+2014-08-07 09:44:26,971 DEBUG org.hornetq.core.client.getConnection:1222 - Trying to connect at the main server using connector :TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58
+2014-08-07 09:44:26,973 DEBUG org.hornetq.core.client.createConnection:503 - Remote destination: /10.135.7.58:5445
+2014-08-07 09:44:27,084 DEBUG org.hornetq.core.client.getConnectionWithRetry:1130 - Reconnection successfull
+2014-08-07 09:44:27,159 DEBUG org.hornetq.core.client.run:1594 - Node e3aaa4cf-1857-11e4-b35a-dfb11c239a34 going up, connector = Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null], isLast=true csf created at
+serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]
+java.lang.Exception
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.<init>(ClientSessionFactoryImpl.java:197)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:808)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnectionInternal(HornetQConnectionFactory.java:583)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:107)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:102)
+	at org.springframework.jms.connection.SingleConnectionFactory.doCreateConnection(SingleConnectionFactory.java:342)
+	at org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:288)
+	at org.springframework.jms.connection.SingleConnectionFactory.createConnection(SingleConnectionFactory.java:225)
+	at org.springframework.jms.support.JmsAccessor.createConnection(JmsAccessor.java:184)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:456)
+	at org.springframework.jms.core.JmsTemplate.send(JmsTemplate.java:543)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:620)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:607)
+	at com.haier.openplatform.hmc.sender.SendMsgService.sendMsg(SendMsgService.java:24)
+	at com.haier.openplatform.console.audit.HOPServiceAuditHandler.afterThrowing(HOPServiceAuditHandler.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:603)
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:42)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl$$EnhancerByCGLIB$$d7e3a708.SearchManualDeployResult(<generated>)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImplTest_SearchManualDeployResult.test_SearchManualDeployResult(TaskServiceImplTest_SearchManualDeployResult.java:16)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+2014-08-07 09:44:27,162 DEBUG org.hornetq.core.client.notifyNodeUp:1509 - NodeUp ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]::nodeID=e3aaa4cf-1857-11e4-b35a-dfb11c239a34, connectorPair=Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null]
+java.lang.Exception: trace
+	at org.hornetq.core.client.impl.ServerLocatorImpl.notifyNodeUp(ServerLocatorImpl.java:1509)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl$Channel0Handler$1.run(ClientSessionFactoryImpl.java:1611)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+2014-08-07 09:44:27,164 DEBUG org.hornetq.core.client.updateMember:199 - Topology@daa6a6[owner=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]]::NewMemeberAdd nodeId=e3aaa4cf-1857-11e4-b35a-dfb11c239a34 member = TopologyMember[name = null, connector=Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null]]
+java.lang.Exception: trace
+	at org.hornetq.core.client.impl.Topology.updateMember(Topology.java:199)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.notifyNodeUp(ServerLocatorImpl.java:1514)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl$Channel0Handler$1.run(ClientSessionFactoryImpl.java:1611)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+2014-08-07 09:44:27,165 DEBUG org.hornetq.core.client.setBackupConnector:295 - ClientSessionFactoryImpl received backup update for live/backup pair = TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58 / null but it didn't belong to TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58
+2014-08-07 09:44:27,396 DEBUG org.hornetq.core.client.close:948 - Calling close on session ClientSessionImpl [name=5ddd8bc6-1dd4-11e4-b2fe-a9822bdad334, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@f11bc
+2014-08-07 09:44:27,398 DEBUG org.hornetq.core.client.doCleanup:2046 - calling cleanup on ClientSessionImpl [name=5ddd8bc6-1dd4-11e4-b2fe-a9822bdad334, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@f11bc
+2014-08-07 09:44:27,432 DEBUG org.hornetq.core.client.close:948 - Calling close on session ClientSessionImpl [name=5dca03c5-1dd4-11e4-b2fe-a9822bdad334, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@1194cf5
+2014-08-07 09:44:27,435 DEBUG org.hornetq.core.client.doCleanup:2046 - calling cleanup on ClientSessionImpl [name=5dca03c5-1dd4-11e4-b2fe-a9822bdad334, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@1194cf5
+2014-08-07 09:44:27,445 DEBUG org.hornetq.core.client.close:942 - Session was already closed, giving up now, this=ClientSessionImpl [name=5dca03c5-1dd4-11e4-b2fe-a9822bdad334, username=null, closed=true, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=5a3bfb02-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=5a3bfb01-1dd4-11e4-b2fe-a9822bdad334, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@1194cf5
+2014-08-07 09:45:43,828 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 09:45:43,832 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address 7f:ffffff99:11:2:ffffffa2:-117
+2014-08-07 09:45:51,975 DEBUG org.hornetq.core.client.getConnectionWithRetry:1068 - Trying reconnection attempt 0/1
+2014-08-07 09:45:51,984 DEBUG org.hornetq.core.client.getConnection:1209 - Trying to connect with connector = org.hornetq.core.remoting.impl.netty.NettyConnectorFactory@14fcc96, parameters = {port=6445, host=10.135.6.66} connector = NettyConnector [host=10.135.6.66, port=6445, httpEnabled=false, useServlet=false, servletPath=/messaging/HornetQServlet, sslEnabled=false, useNio=false]
+2014-08-07 09:45:52,116 DEBUG org.hornetq.core.client.start:424 - Started Netty Connector version 3.6.2.Final-c0d783c
+2014-08-07 09:45:52,117 DEBUG org.hornetq.core.client.getConnection:1222 - Trying to connect at the main server using connector :TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66
+2014-08-07 09:45:52,117 DEBUG org.hornetq.core.client.createConnection:503 - Remote destination: /10.135.6.66:6445
+2014-08-07 09:45:53,155 DEBUG org.hornetq.core.client.getConnection:1231 - Main server is not up. Hopefully there's a backup configured now!
+2014-08-07 09:45:53,166 DEBUG org.hornetq.core.client.getConnectionWithRetry:1089 - Trying to connect towards ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66, backupConfig=null]
+2014-08-07 09:45:53,183 DEBUG org.hornetq.core.client.getConnectionWithRetry:1068 - Trying reconnection attempt 0/1
+2014-08-07 09:45:53,183 DEBUG org.hornetq.core.client.getConnection:1209 - Trying to connect with connector = org.hornetq.core.remoting.impl.netty.NettyConnectorFactory@e3865e, parameters = {port=5445, host=10.135.7.58} connector = NettyConnector [host=10.135.7.58, port=5445, httpEnabled=false, useServlet=false, servletPath=/messaging/HornetQServlet, sslEnabled=false, useNio=false]
+2014-08-07 09:45:53,184 DEBUG org.hornetq.core.client.start:424 - Started Netty Connector version 3.6.2.Final-c0d783c
+2014-08-07 09:45:53,184 DEBUG org.hornetq.core.client.getConnection:1222 - Trying to connect at the main server using connector :TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58
+2014-08-07 09:45:53,184 DEBUG org.hornetq.core.client.createConnection:503 - Remote destination: /10.135.7.58:5445
+2014-08-07 09:45:53,212 DEBUG org.hornetq.core.client.getConnectionWithRetry:1130 - Reconnection successfull
+2014-08-07 09:45:53,226 DEBUG org.hornetq.core.client.run:1594 - Node e3aaa4cf-1857-11e4-b35a-dfb11c239a34 going up, connector = Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null], isLast=true csf created at
+serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]
+java.lang.Exception
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl.<init>(ClientSessionFactoryImpl.java:197)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:808)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnectionInternal(HornetQConnectionFactory.java:583)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:107)
+	at org.hornetq.jms.client.HornetQConnectionFactory.createConnection(HornetQConnectionFactory.java:102)
+	at org.springframework.jms.connection.SingleConnectionFactory.doCreateConnection(SingleConnectionFactory.java:342)
+	at org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:288)
+	at org.springframework.jms.connection.SingleConnectionFactory.createConnection(SingleConnectionFactory.java:225)
+	at org.springframework.jms.support.JmsAccessor.createConnection(JmsAccessor.java:184)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:456)
+	at org.springframework.jms.core.JmsTemplate.send(JmsTemplate.java:543)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:620)
+	at org.springframework.jms.core.JmsTemplate.convertAndSend(JmsTemplate.java:607)
+	at com.haier.openplatform.hmc.sender.SendMsgService.sendMsg(SendMsgService.java:24)
+	at com.haier.openplatform.console.audit.HOPServiceAuditHandler.afterThrowing(HOPServiceAuditHandler.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:603)
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:59)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:42)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl$$EnhancerByCGLIB$$e4820d74.SearchManualDeployResult(<generated>)
+	at com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImplTest_SearchManualDeployResult.test_SearchManualDeployResult(TaskServiceImplTest_SearchManualDeployResult.java:16)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+2014-08-07 09:45:53,229 DEBUG org.hornetq.core.client.notifyNodeUp:1509 - NodeUp ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]::nodeID=e3aaa4cf-1857-11e4-b35a-dfb11c239a34, connectorPair=Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null]
+java.lang.Exception: trace
+	at org.hornetq.core.client.impl.ServerLocatorImpl.notifyNodeUp(ServerLocatorImpl.java:1509)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl$Channel0Handler$1.run(ClientSessionFactoryImpl.java:1611)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+2014-08-07 09:45:53,230 DEBUG org.hornetq.core.client.updateMember:199 - Topology@bda96b[owner=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null]]::NewMemeberAdd nodeId=e3aaa4cf-1857-11e4-b35a-dfb11c239a34 member = TopologyMember[name = null, connector=Pair[a=TransportConfiguration(name=netty, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, b=null]]
+java.lang.Exception: trace
+	at org.hornetq.core.client.impl.Topology.updateMember(Topology.java:199)
+	at org.hornetq.core.client.impl.ServerLocatorImpl.notifyNodeUp(ServerLocatorImpl.java:1514)
+	at org.hornetq.core.client.impl.ClientSessionFactoryImpl$Channel0Handler$1.run(ClientSessionFactoryImpl.java:1611)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+2014-08-07 09:45:53,231 DEBUG org.hornetq.core.client.setBackupConnector:295 - ClientSessionFactoryImpl received backup update for live/backup pair = TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58 / null but it didn't belong to TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58
+2014-08-07 09:45:53,366 DEBUG org.hornetq.core.client.close:948 - Calling close on session ClientSessionImpl [name=911915bd-1dd4-11e4-9d0f-7f991102a28b, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@1e2350a
+2014-08-07 09:45:53,382 DEBUG org.hornetq.core.client.doCleanup:2046 - calling cleanup on ClientSessionImpl [name=911915bd-1dd4-11e4-9d0f-7f991102a28b, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@1e2350a
+2014-08-07 09:45:53,407 DEBUG org.hornetq.core.client.close:948 - Calling close on session ClientSessionImpl [name=9116087c-1dd4-11e4-9d0f-7f991102a28b, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@19f6a57
+2014-08-07 09:45:53,713 DEBUG org.hornetq.core.client.doCleanup:2046 - calling cleanup on ClientSessionImpl [name=9116087c-1dd4-11e4-9d0f-7f991102a28b, username=null, closed=false, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@19f6a57
+2014-08-07 09:45:53,716 DEBUG org.hornetq.core.client.close:942 - Session was already closed, giving up now, this=ClientSessionImpl [name=9116087c-1dd4-11e4-9d0f-7f991102a28b, username=null, closed=true, factory = ClientSessionFactoryImpl [serverLocator=ServerLocatorImpl [initialConnectors=[TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, TransportConfiguration(name=8b7b3fc9-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=6445&host=10-135-6-66], discoveryGroupConfiguration=null], connectorConfig=TransportConfiguration(name=8b7b18b8-1dd4-11e4-9d0f-7f991102a28b, factory=org-hornetq-core-remoting-impl-netty-NettyConnectorFactory) ?port=5445&host=10-135-7-58, backupConfig=null], metaData=(jms-session=,)]@19f6a57
+2014-08-07 09:48:51,799 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 09:48:51,802 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address ffffff89:4b:52:ffffffb3:22:30
+2014-08-07 10:41:23,711 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 10:41:23,747 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address 5:ffffffb4:28:58:ffffffa5:-117
+2014-08-07 10:43:41,428 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 10:43:41,431 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address 4f:17:23:ffffff96:41:13
+2014-08-07 11:24:23,935 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 11:24:23,937 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address d:17:ffffffc7:ffffffc4:47:-22
+2014-08-07 11:25:20,017 DEBUG org.jboss.logging.<clinit>:53 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2014-08-07 11:25:20,020 DEBUG org.hornetq.utils.generateDummyAddress:129 - using dummy address ffffffa7:ffffff97:ffffff93:ffffffed:ffffffd9:43
+2014-08-07 16:52:48,178 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 16:52:48,183 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 81, packageName = alm.222.war
+2014-08-07 16:52:48,183 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 16:52:48,611 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:94 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 16:52:48,611 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:96 - 10.135.12.174
+2014-08-07 16:52:48,612 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:97 - haieradmin
+2014-08-07 16:52:48,612 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - Haier,alm123
+2014-08-07 16:52:48,612 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:99 - 10.135.12.174
+2014-08-07 16:52:48,613 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - webftp
+2014-08-07 16:52:48,613 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - webftp
+2014-08-07 16:52:48,614 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - alm.222.war
+2014-08-07 16:52:48,614 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 16:52:48,739 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:180 - ==================Command====================
+2014-08-07 16:52:48,739 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:181 - ./autodeploy_v_1.sh  weblogic Kaifajiagou@ webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.222.war 1
+2014-08-07 16:52:48,740 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:182 - ==================Command====================
+2014-08-07 17:01:13,414 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:01:13,418 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 82, packageName = alm.22.war
+2014-08-07 17:01:13,418 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:01:13,859 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:94 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:01:13,860 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:96 - 10.135.12.174
+2014-08-07 17:01:13,860 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:97 - haieradmin
+2014-08-07 17:01:13,861 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - Haier,alm123
+2014-08-07 17:01:13,861 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:99 - 10.135.12.174
+2014-08-07 17:01:13,862 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - webftp
+2014-08-07 17:01:13,862 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - webftp
+2014-08-07 17:01:13,862 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - alm.22.war
+2014-08-07 17:01:13,863 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:01:13,950 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:180 - ==================Command====================
+2014-08-07 17:01:13,951 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:181 - ./autodeploy_v_1.sh  weblogic Kaifajiagou@ webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.22.war 1
+2014-08-07 17:01:13,951 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:182 - ==================Command====================
+2014-08-07 17:05:35,902 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:05:35,905 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 83, packageName = alm.222.war
+2014-08-07 17:05:35,905 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:05:36,189 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:94 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:05:36,190 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:96 - 10.135.12.174
+2014-08-07 17:05:36,190 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:97 - haieradmin
+2014-08-07 17:05:36,190 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - Haier,alm123
+2014-08-07 17:05:36,191 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:99 - 10.135.12.174
+2014-08-07 17:05:36,191 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - webftp
+2014-08-07 17:05:36,191 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - webftp
+2014-08-07 17:05:36,191 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - alm.222.war
+2014-08-07 17:05:36,191 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:05:36,269 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:180 - ==================Command====================
+2014-08-07 17:05:36,270 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:181 - ./autodeploy_v_1.sh  weblogic Kaifajiagou@ webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.222.war 1
+2014-08-07 17:05:36,270 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:182 - ==================Command====================
+2014-08-07 17:21:44,703 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:21:44,705 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 84, packageName = alm.22.war
+2014-08-07 17:21:44,705 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:21:45,032 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:94 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:21:45,033 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:96 - 10.135.12.174
+2014-08-07 17:21:45,033 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:97 - haieradmin
+2014-08-07 17:21:45,033 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - Haier,alm123
+2014-08-07 17:21:45,033 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:99 - 10.135.12.174
+2014-08-07 17:21:45,034 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - webftp
+2014-08-07 17:21:45,034 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - webftp
+2014-08-07 17:21:45,034 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - alm.22.war
+2014-08-07 17:21:45,034 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:21:45,125 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:180 - ==================Command====================
+2014-08-07 17:21:45,126 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:181 - ./autodeploy_v_1.sh  weblogic Kaifajiagou@ webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.22.war 1
+2014-08-07 17:21:45,127 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:182 - ==================Command====================
+2014-08-07 17:24:15,261 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:24:15,266 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 85, packageName = alm.222.war
+2014-08-07 17:24:15,266 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:24:15,602 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:94 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:24:15,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:96 - 10.135.12.174
+2014-08-07 17:24:15,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:97 - haieradmin
+2014-08-07 17:24:15,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - Haier,alm123
+2014-08-07 17:24:15,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:99 - 10.135.12.174
+2014-08-07 17:24:15,603 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - webftp
+2014-08-07 17:24:15,604 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - webftp
+2014-08-07 17:24:15,604 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - alm.222.war
+2014-08-07 17:24:15,604 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:24:15,833 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:180 - ==================Command====================
+2014-08-07 17:24:15,834 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:181 - ./autodeploy_v_1.sh  weblogic Kaifajiagou@ webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.222.war 1
+2014-08-07 17:24:15,835 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:182 - ==================Command====================
+2014-08-07 17:27:28,166 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:83 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:27:28,168 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:84 - id = 86, packageName = alm.2014080702.war
+2014-08-07 17:27:28,168 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl.doDeploySchedule:85 - ======== DeployScheduleServiceImpl.doDeploySchedule ========
+2014-08-07 17:27:28,557 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:94 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:27:28,557 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:96 - 10.135.12.174
+2014-08-07 17:27:28,558 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:97 - haieradmin
+2014-08-07 17:27:28,558 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:98 - Haier,alm123
+2014-08-07 17:27:28,558 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:99 - 10.135.12.174
+2014-08-07 17:27:28,559 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:100 - webftp
+2014-08-07 17:27:28,559 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:101 - webftp
+2014-08-07 17:27:28,560 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:102 - alm.2014080702.war
+2014-08-07 17:27:28,560 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:104 - ========================= TaskServiceImpl.deployTask =======================
+2014-08-07 17:27:28,650 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:180 - ==================Command====================
+2014-08-07 17:27:28,651 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:181 - ./autodeploy_v_1.sh  weblogic Kaifajiagou@ webftp webftp 10.135.12.174 10.135.12.174 t3://10.135.12.174:7001 alm.2014080702.war 1
+2014-08-07 17:27:28,651 INFO  com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl.deployTask:182 - ==================Command====================

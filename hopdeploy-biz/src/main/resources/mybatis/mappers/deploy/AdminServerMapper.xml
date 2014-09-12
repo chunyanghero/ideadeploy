@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.AdminServerDAO">
+ 
+	<resultMap id="adminServerResultMap" type="adminServer">
+        <id property="id" column="id" javaType="int" jdbcType="NUMERIC" />
+        <result property="ip" column="ip" />
+        <result property="port" column="port" />
+        <result property="login" column="login" />
+        <result property="passwd" column="passwd" />
+        <result property="parentId" column="parent_id" />
+        <result property="nodeName" column="node_name" />
+        <result property="memo" column="memo" />
+        <result property="middlewareType" column="middleware_type" />
+        <result property="middlewarePath" column="middleware_path" />
+        <result property="specificPath" column="specific_path" />
+        <result property="osType" column="os_type" />
+        <result property="checkUrl" column="check_url" />
+	</resultMap>
+
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize} * #{pager.currentPage} ) where rownum_ >= #{pager.firstResult} + 1]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	<!-- 选择所有列 -->
+	<sql id="selectAllColumns">
+		<![CDATA[
+	    select weblogic_.ID,
+	    	   weblogic_.IP,
+	    	   weblogic_.PORT,
+	    	   weblogic_.LOGIN,
+	    	   weblogic_.PASSWD,
+	    	   weblogic_.PARENT_ID,
+	    	   weblogic_.NODE_NAME,
+	    	   weblogic_.MEMO
+	      from t_weblogic_info weblogic_
+		  ]]>
+	</sql>
+	
+	<!-- 根据ip、port、MiddlewareType查询管理服务器是否已经存在 -->
+	<select id="searchAdminServerByIpPortMTP" parameterType="adminServer" resultMap="adminServerResultMap">
+		select 
+	    	   server_.ID,
+	    	   server_.IP,
+	    	   server_.PORT,
+	    	   server_.LOGIN,
+	    	   server_.PASSWD,
+	    	   server_.PARENT_ID,
+	    	   server_.NODE_NAME,
+	    	   server_.MEMO
+	      from t_weblogic_info server_
+	      where
+	           server_.IP               = #{adminServer.ip}
+	        and
+	           server_.PORT             = #{adminServer.port}
+	        and 
+	           server_.MIDDLEWARE_TYPE  = #{adminServer.middlewareType}
+	        and
+	           server_.MIDDLEWARE_PATH  = #{adminServer.middlewarePath}
+	</select>
+	
+	
+	
+	<!-- 保存管理服务器信息 -->
+	<insert id="save" parameterType="adminServer">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			SELECT seq_server_id.NEXTVAL AS id FROM DUAL
+		</selectKey>	
+		<![CDATA[
+		  INSERT INTO 
+		      T_WEBLOGIC_INFO weblogic_
+		  (
+		       weblogic_.ID,
+	    	   weblogic_.IP,
+	    	   weblogic_.PORT,
+	    	   weblogic_.LOGIN,
+	    	   weblogic_.PASSWD,
+	    	   weblogic_.PARENT_ID,
+	    	   weblogic_.NODE_NAME,
+	    	   weblogic_.MEMO,
+	    	   weblogic_.MIDDLEWARE_TYPE,
+	    	   weblogic_.MIDDLEWARE_PATH,
+	    	   weblogic_.SPECIFIC_PATH,
+	    	   weblogic_.OS_TYPE,
+	    	   weblogic_.CHECK_URL
+		  )
+		   Values
+		  (
+		       #{id},
+		       #{ip},
+		       #{port},
+		       #{login},
+		       #{passwd},
+		       #{parentId},
+		       #{nodeName},
+		       #{memo},
+		       #{middlewareType},
+		       #{middlewarePath},
+		       #{specificPath},
+		       #{osType},
+		       #{checkUrl}
+		   )
+	    ]]>
+	</insert>
+	
+	<!-- 更新AdminServer -->
+	<update id="update" parameterType="adminServer">
+		<![CDATA[
+		UPDATE t_weblogic_info weblogic_
+		 SET   
+	    	 weblogic_.IP          =    #{ip},
+	    	 weblogic_.PORT        =    #{port},
+	    	 weblogic_.LOGIN       =    #{login},
+	    	 weblogic_.PASSWD      =    #{passwd},
+	    	 weblogic_.PARENT_ID   =    #{parentId},
+	    	 weblogic_.NODE_NAME   =    #{nodeName},
+	    	 weblogic_.MEMO        =    #{memo},
+	    	 weblogic_.MIDDLEWARE_TYPE   =   #{middlewareType},
+	    	 weblogic_.MIDDLEWARE_PATH   =   #{middlewarePath},
+	    	 weblogic_.SPECIFIC_PATH     =   #{specificPath},
+	    	 weblogic_.OS_TYPE           =   #{osType},
+	    	 weblogic_.CHECK_URL         =   #{checkUrl}
+		 WHERE 
+		     weblogic_.id = #{id}
+		]]>
+	</update>
+	
+	<!-- 删除AdminServer -->
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+		delete from T_WEBLOGIC_INFO where id = #{id}
+		]]>
+	</delete>
+	
+	<select id="getUsernamePasswdById" resultMap="adminServerResultMap">
+		SELECT
+			weblogic_.LOGIN,
+			weblogic_.PASSWD
+		FROM
+			T_WEBLOGIC_INFO weblogic_
+		WHERE
+			weblogic_.id = #{id}
+	</select>
+	 
+</mapper>

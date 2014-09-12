@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.security.dao.UserDAO">
+ 
+	<resultMap id="userResultMap" type="user">
+        <id property="id" column="id" javaType="int" jdbcType="NUMERIC" />
+        <result property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="realName" column="real_name" />
+        <result property="password" column="password" />
+        <result property="isAdmin" column="is_admin" />
+	</resultMap>
+
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize} * #{pager.currentPage} ) where rownum_ >= #{pager.firstResult} + 1]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	<!--  -->
+	<select id="getPasswordByUsername" parameterType="string" resultType="string">
+		    select 
+		           user_.password
+		    from   
+		           t_user_info user_
+		    where  
+		           user_.username = #{username}
+	</select>
+	
+	<!-- 根据用户名查询以判断是否已经存在 -->
+	<select id="getUserAmount" resultType="int">
+		<![CDATA[
+			select count(*) from t_user_info where username = #{username}
+		]]>
+	</select>
+	
+	<select id="searchForSendingEM" resultMap="userResultMap">
+		select 
+			user_.username,
+			user_.email,
+			user_.phone,
+			user_.real_name
+		from 
+			t_user_info user_
+		where 
+			user_.enabled = '1'
+	</select>
+	
+	<select id="getNumberOfExecutor" resultType="string">
+		select 
+			user_.phone
+		from 
+			t_user_info user_
+		where 
+			user_.real_name = #{executor}
+	</select>
+	
+	<select id="getPhoneNums" resultType="string">
+		select 
+			user_.phone
+		from 
+			t_user_info user_
+		where 
+			user_.enabled = '1'
+	</select>
+	 
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="portal" extends="hopdeploy" namespace="/portal">
+	    <!-- 上传 -->
+		<action name="uploadImg" class="portalAction" method="uploadImg">
+			<result type="json">
+				<param name="root">json</param>
+				<param name="excludeProperties"></param> 
+			</result>
+			<interceptor-ref name="fileUpload">
+			<!-- 在org.apache.struts2.interceptor.FileUploadInterceptor找限制大小和类型的参数
+			限制每个每个上传文件的大小，允许上传的类型，类型在tomcat->conf->web.xml中寻找 -->
+				<param name="maximumSize">1024000</param>
+				<param name="allowedTypes">image/jpeg,image/x-ms-bmp,image/png,image/gif</param>
+			</interceptor-ref>
+			    <!-- 默认拦截器defaultStack要显示的调用，当你调用其他的拦截器后，默认拦截器不会再自动调用 -->
+			<interceptor-ref name="crudStack"></interceptor-ref>
+		</action>
+
+	    <action name="portalRedirect" class="portalRedirectAction">
+	    	<result name="success" type="redirect">${redirectUrl}</result>
+	    </action>
+	    
+	</package>
+</struts>

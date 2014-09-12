@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/jee 
+     http://www.springframework.org/schema/jee/spring-jee.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/lang
+     http://www.springframework.org/schema/lang/spring-lang.xsd
+     http://www.springframework.org/schema/task
+     http://www.springframework.org/schema/task/spring-task.xsd
+     http://www.springframework.org/schema/util
+     http://www.springframework.org/schema/util/spring-util.xsd">
+	<!-- 测试怎么使用 -->
+	<bean id="testJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.haier.openplatform.hopdeploy.quartz.TestJob" /> 
+		<property name="group" value="#{quartzProperties['org.quartz.scheduler.instanceName']}_JOB_GROUP" />
+		<property name="durability" value="false" />
+		<!-- 任务完成之后是否依然保留到数据库，默认false -->
+		<property name="description" value="测试JOB怎么运行" />
+	</bean>
+	<bean id="testCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="testJobDetail" />
+		<property name="cronExpression" value="0 0/1 15 * * ?" />
+		<property name="group" value="#{quartzProperties['org.quartz.scheduler.instanceName']}_TRIGGER_GROUP" />
+	</bean>
+	
+	<!-- 定时扫描发版 -->
+	<bean id="deployScheduleJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.haier.openplatform.hopdeploy.quartz.DeployScheduleJob" /> 
+		<property name="group" value="#{quartzProperties['org.quartz.scheduler.instanceName']}_JOB_GROUP" />
+		<property name="durability" value="false" />
+		<!-- 任务完成之后是否依然保留到数据库，默认false -->
+		<property name="description" value="定时扫描发版" />
+	</bean>
+	<bean id="deployScheduleCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="deployScheduleJobDetail" />
+		<property name="cronExpression" value="0 0/10 0-8,18-23 * * ?" />
+		<property name="group" value="#{quartzProperties['org.quartz.scheduler.instanceName']}_TRIGGER_GROUP" />
+	</bean>
+	
+	<!-- 晚上23：00至次日06：00ALM中提交的需求自动发版 -->
+	<bean id="deployScheduleFromAlmJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.haier.openplatform.hopdeploy.quartz.DeployScheduleFromAlmJob" /> 
+		<property name="group" value="#{quartzProperties['org.quartz.scheduler.instanceName']}_JOB_GROUP" />
+		<property name="durability" value="false" />
+		<!-- 任务完成之后是否依然保留到数据库，默认false -->
+		<property name="description" value="23：00-06：00定时扫描ALM中需求自动发版" />
+	</bean>
+	<bean id="deployScheduleFromAlmCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> 
+		<property name="jobDetail" ref="deployScheduleFromAlmJobDetail" />
+		<property name="cronExpression" value="0 0/10 0-5,23 * * ?" />
+		<property name="group" value="#{quartzProperties['org.quartz.scheduler.instanceName']}_TRIGGER_GROUP" />
+	</bean>
+	
+	<!-- 任务调度管理器 --> 
+	<bean id="clusterQuartzScheduler"
+		class="com.haier.openplatform.quartz.SchedulerFactoryBeanProxy">
+		<property name="schedulerName" value="#{quartzProperties['org.quartz.scheduler.instanceName']}"/>
+		<!-- Job接受applicationContext的成员变量名 -->
+		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
+		<!-- 是否覆盖已有的任务 --> 
+		<property name="overwriteExistingJobs" value="true" />
+		<property name="quartzProperties" ref="quartzProperties" />
+		<property name="triggers">
+			<list>
+				<ref bean="deployScheduleCronTriggerBean"/>
+				<ref bean="deployScheduleFromAlmCronTriggerBean"/>
+				<!-- <ref bean="testCronTriggerBean"/> -->
+			</list>
+		</property>
+		<!-- 定时任务是否启动开关,为true则启动,为false则不启动 --> 
+		<property name="startFlag" value="${quartz.enable}"/>
+	</bean>
+
+	<!-- quartz属性配置 -->
+	<util:properties id="quartzProperties">
+		<prop key="org.quartz.scheduler.instanceName">${app.name}</prop>
+		<prop key="org.quartz.scheduler.instanceId">AUTO</prop>
+		<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+		<!-- 开发环境用RAMJobStore,可加快启动速度 -->
+		<!-- <prop key="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</prop> -->
+		<!-- 生产、测试环境要用TerracottaJobStore -->
+		<prop key="org.quartz.jobStore.class">org.terracotta.quartz.TerracottaJobStore</prop>
+		<prop key="org.quartz.jobStore.tcConfigUrl">${quartz.server}</prop>
+		<prop key="org.quartz.scheduler.instanceIdGenerator.class">com.haier.openplatform.quartz.HostNameTimestampInstanceIdGenerator</prop>
+		<prop key="org.quartz.plugin.triggHistory.class">org.quartz.plugins.history.LoggingTriggerHistoryPlugin</prop>
+		<prop key="org.quartz.scheduler.jmx.export">true</prop>
+	</util:properties>
+</beans>

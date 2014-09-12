@@ -1,0 +1,22 @@
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/404.jsp</pattern>
+        <pattern>/error.jsp</pattern>
+        <pattern>/*ajax=true*</pattern>
+        <pattern>/security/loginInit.action*</pattern>
+        <pattern>/security/login.action*</pattern>
+        <pattern>/security/loginForm.action*</pattern>
+        <pattern>/security/retrievePassword.action</pattern>
+        <pattern>/security/retrieveUserPassword.action</pattern>
+        <pattern>/security/retrieveUpdatePassword.action*</pattern>
+        <pattern>/security/toRetrieveUpdatePassword.action*</pattern>
+        <pattern>/portal/portal.action*</pattern>
+        <pattern>/deploy/searchAppRelateServer.action*</pattern>
+        <pattern>/deploy/searchAppServer.action*</pattern>
+        <pattern>/deploy/searchUnixInfo.action*</pattern>
+        <pattern>/deploy/searchManualDeployResult.action*</pattern>
+    </excludes> 
+    <decorator name="default" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>

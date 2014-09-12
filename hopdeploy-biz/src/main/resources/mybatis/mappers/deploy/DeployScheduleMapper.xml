@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.DeployScheduleDAO">
+	<resultMap id="deployScheduleResultMap" type="deploySchedule">
+        <result property="id" column="id" />
+        <result property="packageName" column="package_name" />
+        <result property="executeTime" column="execute_time" />
+        <result property="executor" column="executor" />
+        <result property="status" column="status" />
+        <result property="deployMessage" column="deploy_message" />
+        <result property="publishId" column="publish_id" />
+	</resultMap>
+	
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize}*#{pager.currentPage} ) where rownum_ > #{pager.firstResult}]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	
+	<select id="searchAllAppAbbrs" resultType="string">
+		select distinct app_.APPLICATION_ABBR from T_APP app_
+	</select>
+	
+	<!-- 用来模糊查询时自动补全 -->
+	<select id="searchExecutorForCombobox" resultMap="deployScheduleResultMap">
+		select distinct
+	    	   user_.REAL_NAME as executor
+	    from T_USER_INFO user_
+	</select>
+	
+	<insert id="createDeploySchedule" parameterType="deploySchedule">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			SELECT seq_deploy_schedule_id.NEXTVAL AS id FROM DUAL
+		</selectKey>	
+		<![CDATA[
+		  INSERT INTO 
+		      MANUAL_DEPLOY_SCHEDULE schedule_
+		  (
+		       schedule_.ID,
+		       schedule_.PACKAGE_NAME,
+		       schedule_.EXECUTE_TIME,
+		       schedule_.EXECUTOR,
+		       schedule_.STATUS,
+		       schedule_.PUBLISH_ID
+		  )
+		   Values
+		  (
+		       #{id},
+		       #{packageName},
+		       to_date(#{executeTime},'yyyy-mm-dd hh24:mi'),
+		       #{executor},
+		       #{status},
+		       #{publishId}
+		   )
+	    ]]>
+	</insert>
+	
+	<update id="persistenceDM">
+		<![CDATA[
+		  UPDATE 
+		      MANUAL_DEPLOY_SCHEDULE schedule_
+		  SET
+		       schedule_.deploy_message = #{s}
+ 	      WHERE
+		       id = #{id}
+		]]>
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		delete from MANUAL_DEPLOY_SCHEDULE where id = #{id}
+		]]>
+	</delete>
+	
+	<update id="confirmDeploySchedule">
+		update MANUAL_DEPLOY_SCHEDULE
+		<choose>
+		    <when test="flag == 1">
+		      	set STATUS = '1'
+		    </when>
+		    <when test="flag == 2">
+		      	set STATUS = '2'
+		    </when>
+			<when test="flag == null">
+			 	set STATUS = '6' 
+			</when>
+  		</choose>
+		where id = #{id}
+	</update>
+	
+	<sql id="selectAllColumns">
+	<![CDATA[
+		select
+			schedule_.ID,
+       		schedule_.PACKAGE_NAME,
+		    to_char(schedule_.EXECUTE_TIME, 'yyyy-mm-dd hh24:mi') as execute_time,
+		    schedule_.EXECUTOR,
+		    schedule_.STATUS
+		from
+		    MANUAL_DEPLOY_SCHEDULE schedule_
+		where 
+		    1 = 1
+	]]>
+	</sql>
+	<sql id="searchDeploySchedule_fragement">
+	    <if test="deploySchedule.packageName != null and deploySchedule.packageName != ''">
+		    and schedule_.PACKAGE_NAME like '%' || trim(#{deploySchedule.packageName}) || '%'
+	    </if>
+		<if test="deploySchedule.executor != null and deploySchedule.executor != ''">
+			and schedule_.EXECUTOR like '%' || trim(#{deploySchedule.executor}) || '%'
+		</if>
+		<if test="deploySchedule.status != null">
+			and schedule_.STATUS = #{deploySchedule.status}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[and schedule_.EXECUTE_TIME >= to_date(trim(#{startTime}), 'yyyy-mm-dd')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[and schedule_.EXECUTE_TIME < to_date(#{endTime}, 'yyyy-mm-dd')]]>
+		</if>
+	</sql>
+	<sql id="searchDeploySchedule_order_fragement">
+		order by
+		    schedule_.EXECUTE_TIME desc
+	</sql>
+	<select id="searchDeploySchedule" parameterType="deploySchedule" 
+		resultMap="deployScheduleResultMap">
+		<include refid="pagination_Head" />
+		<include refid="selectAllColumns" />
+		<include refid="searchDeploySchedule_fragement" />
+		<include refid="searchDeploySchedule_order_fragement" />
+		<include refid="pagination_Tail" />
+	</select>
+	<select id="searchDeployScheduleCount" parameterType="deploySchedule" 
+		resultType="long">
+		<include refid="count_Start_Head" />
+		<include refid="selectAllColumns" />
+		<include refid="searchDeploySchedule_fragement" />
+		<include refid="count_Start_Tail" />
+	</select>
+	
+	<select id="searchDeployMessage" resultType="string">
+		select
+		    schedule_.DEPLOY_MESSAGE
+		from
+		    MANUAL_DEPLOY_SCHEDULE schedule_
+		where 
+		    id = #{id}
+	</select>
+	
+	<select id="getToBeDeployedApps" parameterType="date"
+		resultMap="deployScheduleResultMap">
+		<include refid="selectAllColumns" />
+		<![CDATA[and schedule_.EXECUTE_TIME <= #{date}]]>
+		and schedule_.STATUS = 0
+	</select>
+	
+	<select id="searchDeployScheduleFromAlm" resultMap="deployScheduleResultMap">
+		<![CDATA[
+			select 
+				PUBLISH_WAR as package_name,
+				PUBLISH_ID
+			from 
+				ALM.waiting_production@tohaieralm 
+			order by 
+				publish_id
+		]]>
+	</select>
+	<select id="getDeployedPublishIds" resultType="int">
+		<![CDATA[
+			select 
+				schedule_.PUBLISH_ID
+			from 
+				MANUAL_DEPLOY_SCHEDULE schedule_
+			where
+				schedule_.EXECUTE_TIME > (sysdate-2)
+			and
+				schedule_.STATUS != 0
+			and
+				schedule_.PUBLISH_ID is not null
+		]]>
+	</select>
+	
+</mapper>

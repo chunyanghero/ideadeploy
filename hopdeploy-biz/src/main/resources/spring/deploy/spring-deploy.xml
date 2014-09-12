@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+     http://www.springframework.org/schema/jee 
+     http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.1.xsd
+     http://www.springframework.org/schema/lang
+     http://www.springframework.org/schema/lang/spring-lang-3.1.xsd">
+    <!-- dao -->
+    <bean id="appRelateServerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.AppRelateServerDAO" />
+	</bean>
+	
+	<bean id="appServerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.AppServerDAO" />
+	</bean>
+	<bean id="adminServerDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.AdminServerDAO" />
+	</bean>
+	<bean id="appDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.AppDAO" />
+	</bean>
+	<bean id="preTaskDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.PreTaskDAO" />
+	</bean>
+	<bean id="taskDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.TaskDAO" />
+	</bean>
+	<bean id="almTaskDAO" class="com.haier.openplatform.hopdeploy.deploy.dao.impl.AlmTaskDAOImpl">
+	</bean>
+	<bean id="deployScheduleDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" 
+	      parent="baseDAO">
+		<property name="mapperInterface" 
+			value="com.haier.openplatform.hopdeploy.deploy.dao.DeployScheduleDAO" />
+	</bean>
+	
+	<!-- service -->
+	<bean id="appRelateServerService"
+		class="com.haier.openplatform.hopdeploy.deploy.service.impl.AppRelateServerServiceImpl">
+		<property name="appRelateServerDAO" ref="appRelateServerDAO" />
+		<property name="adminServerDAO" ref="adminServerDAO" />
+		<property name="appServerDAO" ref="appServerDAO" />
+		<property name="appDAO" ref="appDAO" />
+	</bean>
+	
+	<bean id="appServerService"
+		class="com.haier.openplatform.hopdeploy.deploy.service.impl.AppServerServiceImpl">
+		<property name="appServerDAO" ref="appServerDAO" />
+	</bean>
+	
+	<bean id="appService"
+		class="com.haier.openplatform.hopdeploy.deploy.service.impl.AppServiceImpl">
+		<property name="appDAO" ref="appDAO" />
+	</bean>
+	
+	<bean id="taskService"
+		class="com.haier.openplatform.hopdeploy.deploy.service.impl.TaskServiceImpl">
+		<property name="almTaskDAO" ref="almTaskDAO" />
+		<property name="preTaskDAO" ref="preTaskDAO" />
+		<property name="taskDAO" ref="taskDAO" />
+		<property name="userDAO" ref="userDAO" />
+		<property name="emailSender" ref="emailSender" />
+		<property name="smsSender" ref="smsSender" />
+	</bean>
+	
+	<bean id="deployService"
+		class="com.haier.openplatform.hopdeploy.deploy.service.impl.DeployServiceImpl">
+		<property name="taskService" ref="taskService" />
+	</bean>
+	<bean id="deployScheduleService"
+		class="com.haier.openplatform.hopdeploy.deploy.service.impl.DeployScheduleServiceImpl">
+		<property name="deployScheduleDAO" ref="deployScheduleDAO" />
+		<property name="userDAO" ref="userDAO" />
+		<property name="deployService" ref="deployService" />
+		<property name="taskService" ref="taskService" />
+	</bean>
+	
+</beans>

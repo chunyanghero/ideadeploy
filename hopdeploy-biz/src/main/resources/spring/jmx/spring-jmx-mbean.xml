@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">  
+    <!-- <bean id="assembler"  
+        class="org.springframework.jmx.export.assembler.InterfaceBasedMBeanInfoAssembler">  
+        <property name="managedInterfaces">  
+            <list>  
+                <value>com.haier.openplatform.showcase.jmx.service.JmxMBeanService</value>  
+            </list>  
+        </property>  
+    </bean> -->
+       
+    <!-- 定义 RMI连接器,注意需要先定义一个naming 注册 bean-->
+    <!-- <bean id="registry"
+          class="org.springframework.remoting.rmi.RmiRegistryFactoryBean"
+          destroy-method="destroy"> 
+      <property name="port" value="5099" /> 
+    </bean> -->
+           
+    <!-- <bean id="serverConnector"
+         class="org.springframework.jmx.support.ConnectorServerFactoryBean"
+         depends-on="registry"> 
+        <property name="objectName" value="connector:name=rmi"/>
+        <property name="serviceUrl"
+    		value="service:jmx:rmi://localhost/jndi/rmi://localhost:5099/jmxconnector"/>
+    </bean> -->
+
+    <!-- 定义mx4j的HttpAdaptor bean--> 
+    <!-- <bean id="httpAdaptor" class="mx4j.tools.adaptor.http.HttpAdaptor"> 
+        <property name="port" value="5688" />
+        <property name="processor" ref="xsltProcessor" /> 
+    </bean> -->
+	
+	<!-- <bean id="xsltProcessor" class="mx4j.tools.adaptor.http.XSLTProcessor" /> -->
+	
+    <!-- 定义MBeanExporter bean, 这是spring jmx最核心的类 -->
+    <!-- <bean id="mBeanExporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false" depends-on="mbeanServer"> -->
+    <!-- <bean id="mBeanExporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+        <property name="assembler" ref="assembler"/>
+        <property name="beans">
+            <map>
+                <entry key="mbean:name=jmxMBeanService" value-ref="jmxMBeanService"/>
+		        <entry key="MX4J:name=mc4jadapter,port=5688" value-ref="httpAdaptor"/>
+		        <entry key="MX4J:name=XSLTProcessor" value-ref="xsltProcessor" />
+            </map>
+        </property>
+       
+    </bean> -->
+    
+    <!-- 定义自己的bean -->
+    <!-- <bean id="jmxMBeanService" 
+    	class="com.haier.openplatform.showcase.jmx.service.impl.JmxMBeanServiceImpl">
+    </bean> -->
+</beans>

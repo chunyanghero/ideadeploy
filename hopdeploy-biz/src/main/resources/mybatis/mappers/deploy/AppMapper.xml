@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.haier.openplatform.hopdeploy.deploy.dao.AppDAO">
+ 
+	<resultMap id="appResultMap" type="app">
+        <id property="applicationId" column="application_id" javaType="int" jdbcType="NUMERIC" />
+        <result property="applicationCode" column="application_code" />
+        <result property="applicationName" column="application_name" />
+        <result property="weblogicId" column="weblogic_id" />
+        <result property="applicationAbbr" column="application_abbr" />
+        <result property="deployTutorial" column="deploy_tutorial" />
+        <result property="deployType" column="deploy_type" />
+        <result property="engineer" column="engineer" />
+        <result property="engineerMail" column="engineer_mail" />
+        <result property="engineerNumber" column="engineer_number" />
+        <result property="psiConner" column="psi_conner" />
+        <result property="psiConnerNumber" column="psi_conner_number" />
+        <result property="packageType" column="package_type" />
+        <result property="deployNodes" column="deploy_nodes" />
+	</resultMap>
+	
+	
+	<!-- oracle 分页头 -->
+	<sql id="pagination_Head">
+		<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<!-- oracle 分页尾 -->
+	<sql id="pagination_Tail">
+	  <![CDATA[) row_ where rownum <= #{pager.pageSize} * #{pager.currentPage} ) where rownum_ >= #{pager.firstResult} + 1]]>
+	</sql>
+	<!-- count * from -->
+	<sql id="count_Start_Head">
+		<![CDATA[select count(*) from ( ]]>
+	</sql>
+	<sql id="count_Start_Tail">
+		<![CDATA[)]]>
+	</sql>
+	
+	<!-- 选择所有列 -->
+	<sql id="searchApp_fragement">
+		<![CDATA[
+	    select 
+	           app_.application_id,
+	    	   app_.application_code,
+	    	   app_.application_name,
+	    	   app_.weblogic_id,
+	    	   app_.application_abbr  	   	    	   	    	   
+	      from t_app app_
+		  ]]>
+	</sql>
+	
+	<!-- 根据deployType、applicationAbbr、packageType查询应用是否已经存在 -->
+	<select id="searchAppByCodeAbbrPT" parameterType="app" resultMap="appResultMap">
+		select 
+	    	   app_.application_id,
+	    	   app_.application_code,
+	    	   app_.application_name,
+	    	   app_.weblogic_id,
+	    	   app_.application_abbr,
+	    	   app_.package_type
+	    from   
+	           t_app app_
+	    where
+	           app_.application_code = #{app.applicationCode}
+	    and
+	           app_.application_abbr = #{app.applicationAbbr}
+	    and
+	    	   app_.package_type     = #{app.packageType}
+	</select>
+	
+	<!-- 根据个数判断是否可以删除AdminServer -->
+	<select id="searchAppCountByWeblogicId" resultType="int">
+		<![CDATA[
+			select count(*) from T_APP where weblogic_id = #{weblogicId}
+		]]>
+	</select>
+	
+	<!-- 根据id查询 -->
+	<select id="get" resultMap="appResultMap">
+		<include refid="searchApp_fragement" />
+		<![CDATA[
+			where app_.application_id = #{id}
+		]]>
+	</select>
+	
+	<!-- 保存应用信息 -->
+	<insert id="save" parameterType="app">
+		<selectKey keyProperty="applicationId" order="BEFORE" resultType="int">
+			SELECT seq_application_id.NEXTVAL AS applicationId FROM DUAL
+		</selectKey>	
+		<![CDATA[
+		INSERT INTO T_APP
+		  (
+		    application_id,
+		    application_code,
+		    application_name,
+		    weblogic_id,
+		    application_abbr,
+		    engineer, 
+		    engineer_mail,
+		    engineer_number,
+		    psi_conner,
+		    psi_conner_number,
+		    deploy_type,
+		    package_type,
+		    deploy_nodes
+		  )
+		   Values
+		  (
+		   #{applicationId},
+		   #{applicationCode},
+		   #{applicationName},
+		   #{weblogicId},
+		   #{applicationAbbr},
+		   #{engineer},
+		   #{engineerMail},
+		   #{engineerNumber},
+		   #{psiConner},
+		   #{psiConnerNumber},
+		   #{deployType},
+		   #{packageType},
+		   #{deployNodes}
+          )
+	    ]]>
+	</insert>
+	
+	<!-- 更新应用信息 -->
+	<update id="update" parameterType="app">
+		<![CDATA[
+		UPDATE T_APP
+		 SET 
+		    application_code = #{applicationCode},
+		    application_name = #{applicationName},
+		    weblogic_id      = #{weblogicId},
+		    application_abbr = #{applicationAbbr},
+		    engineer         = #{engineer},
+		    engineer_mail    = #{engineerMail},
+		    engineer_number  = #{engineerNumber},
+		    psi_conner       = #{psiConner},
+		    psi_conner_number= #{psiConnerNumber},
+		    deploy_type      = #{deployType},
+		    package_type     = #{packageType},
+		    deploy_nodes     = #{deployNodes}
+		 WHERE 
+		    application_id   = #{applicationId}
+		]]>
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+		delete from T_APP where application_id = #{applicationId}
+		]]>
+	</delete>
+	
+	<!-- 查询发版指南 -->
+	<select id="searchDeployTutorialByApplicationId" resultType="string">
+		<![CDATA[
+			select deploy_tutorial from T_APP where application_id = #{applicationId}
+		]]>
+	</select>
+	
+	<!-- 更新发版指南 -->
+	<update id="updateDeployTutorialByApplicationId" parameterType="app">
+		<![CDATA[
+		UPDATE T_APP
+		 SET 
+		    deploy_tutorial = #{app.deployTutorial}
+		 WHERE 
+		    application_id   = #{app.applicationId}
+		]]>
+	</update>
+	 
+</mapper>

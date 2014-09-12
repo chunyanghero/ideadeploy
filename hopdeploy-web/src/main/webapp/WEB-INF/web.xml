@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+      version="2.5"
+      metadata-complete="true">
+	<display-name>HOPDEPLOY</display-name>
+	<context-param>
+		<param-name>startupListeners</param-name>
+		<param-value>com.haier.openplatform.util.WeblogicSitemeshEncodingListener,com.haier.openplatform.hopdeploy.util.SysconfigInitListener</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.haier.openplatform.webapp.listener.BootstrapListener</listener-class>
+	</listener>
+	<!-- 集群session配置-基于缓存实现 -->
+	<filter>
+		<filter-name>ClusterSessionFilter</filter-name>
+		<filter-class>com.haier.openplatform.session.filter.ClusterSessionFilter</filter-class>
+		<init-param>
+			<param-name>sessionServiceId</param-name>
+			<param-value>sessionService</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sessionKey</param-name>
+			<param-value>showcase_sessionKey</param-value>
+		</init-param>
+		<!-- <init-param>
+			<param-name>requestUriIgnorePattern</param-name>
+			<param-value>.*\.(png|gif|jpg|css|js|ico|jpeg|htm|html)$</param-value>
+		</init-param> -->
+	</filter>
+	<filter-mapping>
+		<filter-name>ClusterSessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- ***************************cas******************************** -->
+	<!-- 该过滤器用于实现单点登出功能，可选配置。 
+	<filter>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<filter-class>com.haier.openplatform.showcase.webapp.filter.ClusterSingleSignOutFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	 -->
+	 <!-- 该过滤器负责对Ticket的校验工作，必须启用它 
+	<filter>
+		<filter-name>casValidationFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>casValidationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
+	<!-- 该过滤器负责用户的认证工作，必须启用它 
+	<filter>
+		<filter-name>casFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>casFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
+	<!--
+		该过滤器使得开发者可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。
+		比如AssertionHolder.getAssertion().getPrincipal().getName()。
+	--><!-- 
+	<filter>
+		<filter-name>CAS Assertion Thread Local Filter</filter-name>
+		<filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CAS Assertion Thread Local Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	<!-- ***************************cas******************************** -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		classpath*:/hmc/hornetq/hmc-jms-hornetq.xml,
+		classpath*:/console/audit/console-audit.xml,
+		classpath*:/console/jms/console-jms-consumer.xml,
+		classpath*:/console/jms/console-jms-provider.xml,
+		classpath*:/spring_web/**/spring-*.xml,
+		classpath*:/spring/**/spring-*.xml
+		</param-value>
+	</context-param>
+	<!-- Clean up each threadlocal value and set necessary information for excepction capture -->
+<!-- 	<filter> -->
+<!-- 		<filter-name>HOPAuditFilter</filter-name> -->
+<!-- 		<filter-class>com.haier.openplatform.console.audit.HOPAuditFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>HOPAuditFilter</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+	<filter>
+		<filter-name>struts2-prepare</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>struts-default.xml,struts-plugin.xml,struts/struts.xml</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2-prepare</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+	
+	<!-- jsp自定义标签引入 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/security-tags</taglib-uri>
+			<taglib-location>/WEB-INF/tlds/auth.tld </taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>

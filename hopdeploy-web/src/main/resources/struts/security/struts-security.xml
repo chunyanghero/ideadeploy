@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="security" extends="hopdeploy" namespace="/security">
+	    <action name="loginForm">
+			<result>/WEB-INF/pages/security/login.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref> 
+		</action>
+		<action name="login" class="loginAction">
+			<result name="success" type="redirect">
+				${dynamicURL}/deploy/searchAppRelateServerInit.action
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref> 
+		</action>
+	</package>
+</struts>
